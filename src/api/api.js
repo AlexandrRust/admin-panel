@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://lockit.com.ua/api';
+axios.defaults.baseURL = 'https://lockit.com.ua/api';
 
 export const token = {
   set(token) {

@@ -6,6 +6,7 @@ import { authSelectors } from 'redux/auth';
 const LogoUser = ({ isOpen, bigNavBar }) => {
   const userNikName = useSelector(authSelectors.getUserNickName);
   const userAvatar = useSelector(authSelectors.getUserAvatar);
+  console.log(userAvatar);
   return (
     <LogoBoxStyle>
       <Logo to={'/userInfo'}>
