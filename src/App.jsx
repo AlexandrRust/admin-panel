@@ -1,10 +1,10 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 
 import { ToastContainer } from 'react-toastify';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const SharedLayout = lazy(() => import('./layout/SharedLayout'));

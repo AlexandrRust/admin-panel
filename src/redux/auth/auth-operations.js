@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from 'api/api';
-import { authCurrentUser, authLogIn, authLogOut } from 'api/authApi';
+import { authCurrentUser, authLogIn } from 'api/authApi';
 
 export const logIn = createAsyncThunk('/pub/auths/login', async credentials => {
   try {
