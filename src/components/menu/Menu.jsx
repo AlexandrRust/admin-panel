@@ -32,6 +32,7 @@ const Menu = () => {
         <MenuLink to="/dashboard">
           <MenuItemTitle>Dashboard</MenuItemTitle>
         </MenuLink>
+        <SubList></SubList>
       </div>
       <div>
         <MenuItemTitle data-title="pages" onClick={OpenSubMenu}>
@@ -79,7 +80,7 @@ const Menu = () => {
             }
           />
         </MenuItemTitle>
-        <ul
+        <SubList
           hidden={
             !menuItemOpen.find(elem => elem === 'users') || menuItemOpen === []
           }
@@ -99,12 +100,13 @@ const Menu = () => {
               <MenuItemTitle>Permissions</MenuItemTitle>
             </MenuLink>
           </MenuItem>
-        </ul>
+        </SubList>
       </div>
       <div className="close">
         <MenuLink to="/menus">
           <MenuItemTitle>Menus</MenuItemTitle>
         </MenuLink>
+        <SubList></SubList>
       </div>
       <div>
         <MenuItemTitle data-title="products" onClick={OpenSubMenu}>
@@ -117,7 +119,7 @@ const Menu = () => {
             }
           />
         </MenuItemTitle>
-        <ul
+        <SubList
           hidden={
             !menuItemOpen.find(elem => elem === 'products') ||
             menuItemOpen.length === 0
@@ -133,7 +135,7 @@ const Menu = () => {
               <MenuItemTitle>Category Products</MenuItemTitle>
             </MenuLink>
           </MenuItem>
-        </ul>
+        </SubList>
       </div>
     </MenuStyle>
   );
