@@ -23,12 +23,12 @@ const Users = () => {
   useEffect(() => {
     dispath(usersOperations.getUsers());
   }, [dispath]);
-  const getVisibleUsersInput = () => {
-    const normalizeFilter = filter.toLocaleLowerCase();
-    return usersList.filter(user =>
-      user.firstname.toLocaleLowerCase().includes(normalizeFilter)
-    );
-  };
+  // const getVisibleUsersInput = () => {
+  //   const normalizeFilter = filter.toLocaleLowerCase();
+  //   return usersList.filter(user =>
+  //     user.firstname.toLocaleLowerCase().includes(normalizeFilter)
+  //   );
+  // };
   return (
     <PageContentBox>
       <Section>
