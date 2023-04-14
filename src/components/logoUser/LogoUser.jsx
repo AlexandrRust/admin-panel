@@ -6,11 +6,15 @@ import { authSelectors } from 'redux/auth';
 const LogoUser = ({ isOpen, bigNavBar }) => {
   const userNikName = useSelector(authSelectors.getUserNickName);
   const userAvatar = useSelector(authSelectors.getUserAvatar);
-  console.log(userAvatar);
   return (
     <LogoBoxStyle>
       <Logo to={'/userInfo'}>
-        <img src={userAvatar} alt="avatar" height={33} />
+        <img
+          src={userAvatar}
+          alt="avatar"
+          height={33}
+          style={{ borderRadius: '50%' }}
+        />
         <h3
           style={
             isOpen === bigNavBar

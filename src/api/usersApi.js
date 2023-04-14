@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export const getUsers = () => {
+export const usersGet = () => {
   return axios.get('/sky/users');
 };

@@ -5,6 +5,9 @@ const theme = {
   borderColors: {
     primary: '#dee2e6',
   },
+  icon: {
+    FiArrow: { height: '12px', opacity: '0.3' },
+  },
   btn: {
     btnGreen: {
       color: '#fff',

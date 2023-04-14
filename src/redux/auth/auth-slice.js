@@ -49,17 +49,17 @@ export const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
     },
-    [authOperations.getCurrentUser.fulfilled](state, action) {
-      state.user = action.payload;
-      state.isLoggedIn = true;
-      state.isRefreshingUser = false;
-    },
-    [authOperations.getCurrentUser.pending](state, action) {
-      state.isRefreshingUser = true;
-    },
-    [authOperations.getCurrentUser.rejected](state, action) {
-      state.isRefreshingUser = false;
-    },
+    // [authOperations.getCurrentUser.fulfilled](state, action) {
+    //   state.user = action.payload;
+    //   state.isLoggedIn = true;
+    //   state.isRefreshingUser = false;
+    // },
+    // [authOperations.getCurrentUser.pending](state, action) {
+    //   state.isRefreshingUser = true;
+    // },
+    // [authOperations.getCurrentUser.rejected](state, action) {
+    //   state.isRefreshingUser = false;
+    // },
   },
 });
 

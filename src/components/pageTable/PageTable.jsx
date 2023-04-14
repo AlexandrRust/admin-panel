@@ -1,22 +1,50 @@
-import { PageTableStyle } from "./common/PageTableStyle.styled";
-import { TableTh } from "./common/TableTh.style";
-import { FiArrowUp, FiArrowDown } from "react-icons/fi";
-import { TableTd } from "./common/TableTd.style";
+import { PageTableStyle } from './common/PageTableStyle.styled';
+import { TableTh } from './common/TableTh.style';
+import { FiArrowUp, FiArrowDown } from 'react-icons/fi';
+import { TableTd } from './common/TableTd.style';
+import { IconBox } from './common/IconBox.styled';
+import { TableThBox } from './common/TableThBox.styled';
+import { useState } from 'react';
 
-const PageTable = () => {
+const PageTable = ({ list }) => {
+  // const [sortList, setSortList] = useState(list);
+
+  // const HahdleSort = () => {
+  //   console.log(sortList);
+  //   console.log(listArray.sort(listArray.name).reverse());
+  // };
+
   return (
     <PageTableStyle>
       <thead>
         <tr>
-          <TableTh>
-            ID
-            <FiArrowUp style={{ marginLeft: "20px" }} />
-            <FiArrowDown />
+          <TableTh style={{ width: '8%' }}>
+            <TableThBox>
+              ID
+              <IconBox>
+                <FiArrowUp
+                  style={{
+                    height: '12px',
+                    width: '12px',
+                    opacity: '0.3',
+                    cursor: 'pointer',
+                  }}
+                />
+                <FiArrowDown
+                  style={{
+                    height: '12px',
+                    width: '12px',
+                    opacity: '0.3',
+                    cursor: 'pointer',
+                  }}
+                />
+              </IconBox>
+            </TableThBox>
           </TableTh>
           <TableTh>
             Назва
-            <FiArrowUp style={{ float: "right" }} />
-            <FiArrowDown style={{ float: "right" }} />
+            <FiArrowUp />
+            <FiArrowDown />
           </TableTh>
           <TableTh>
             Псевдонім
@@ -31,19 +59,21 @@ const PageTable = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <TableTd>1</TableTd>
-          <TableTd>Home</TableTd>
-          <TableTd>Home</TableTd>
-          <TableTd>Home</TableTd>
-        </tr>
+        {list.map(elem => (
+          <tr key={elem.id}>
+            <TableTd>{elem.id}</TableTd>
+            <TableTd>{elem.firstname}</TableTd>
+            <TableTd>{elem.email}</TableTd>
+            <TableTd>{elem.nickname}</TableTd>
+          </tr>
+        ))}
       </tbody>
       <tfoot>
         <tr>
           <TableTh>ID</TableTh>
-          <TableTh>Назва</TableTh>
-          <TableTh>Псевдонім</TableTh>
-          <TableTh>Дії</TableTh>
+          <TableTh>firstname</TableTh>
+          <TableTh>lastname</TableTh>
+          <TableTh>email</TableTh>
         </tr>
       </tfoot>
     </PageTableStyle>

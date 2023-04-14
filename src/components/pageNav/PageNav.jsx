@@ -1,7 +1,7 @@
-import Pageinput from "../pageInput/PageInput";
-import { PageNavBox } from "./common/PageNavBox.styled";
-import { PageNavList } from "./common/PageNavList.styled";
-import { PageNavListItem } from "./common/PageNavListItem.styled";
+import Pageinput from '../inputFilter/InputFilter';
+import { PageNavBox } from './common/PageNavBox.styled';
+import { PageNavList } from './common/PageNavList.styled';
+import { PageNavListItem } from './common/PageNavListItem.styled';
 
 const PageNav = () => {
   return (
