@@ -35,7 +35,7 @@ const PageTable = ({ list }) => {
               </TableTh>
               <TableTh>
                 <TableThBox>
-                  Назва
+                  Firstname
                   <IconBox>
                     <IconArrowUp />
                     <IconArrowDown />
@@ -44,7 +44,7 @@ const PageTable = ({ list }) => {
               </TableTh>
               <TableTh>
                 <TableThBox>
-                  Псевдонім
+                  Lastname
                   <IconBox>
                     <IconArrowUp />
                     <IconArrowDown />
@@ -53,7 +53,7 @@ const PageTable = ({ list }) => {
               </TableTh>
               <TableTh>
                 <TableThBox>
-                  Дії
+                  Email
                   <IconBox>
                     <IconArrowUp />
                     <IconArrowDown />
@@ -75,9 +75,9 @@ const PageTable = ({ list }) => {
           <tfoot>
             <tr>
               <TableTh>ID</TableTh>
-              <TableTh>firstname</TableTh>
-              <TableTh>lastname</TableTh>
-              <TableTh>email</TableTh>
+              <TableTh>Firstname</TableTh>
+              <TableTh>Lastname</TableTh>
+              <TableTh>Email</TableTh>
             </tr>
           </tfoot>
         </PageTableStyle>

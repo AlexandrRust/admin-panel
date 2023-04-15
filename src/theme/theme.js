@@ -12,7 +12,7 @@ const theme = {
     btnGreen: {
       color: '#fff',
       background: '#28a745',
-      padding: '8px 12px',
+      padding: '3px 12px',
       border: '1px solid transparent',
       textDecoration: 'none',
       cursor: 'pointer',

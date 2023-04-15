@@ -4,10 +4,13 @@ import { LabelStyle } from 'components/form/common/LabelStyle.styled';
 import { FormStyle } from 'components/form/FormStyle.styled';
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { usersOperations } from 'redux/users';
 
 import { GrCircleQuestion } from 'react-icons/gr';
+import { useDispatch } from 'react-redux';
 
 const FormUsers = ({ fields, path }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const res = fields.reduce((acc, { id }) => {
     acc[id] = '';
@@ -19,7 +22,8 @@ const FormUsers = ({ fields, path }) => {
       initialValues={res}
       onSubmit={(values, actions) => {
         console.log(values);
-        navigate(path);
+        dispatch(usersOperations.addUser(values));
+        // navigate(path);
         actions.resetForm();
       }}
     >

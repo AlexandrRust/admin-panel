@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from 'App';
-
+import { StyledEngineProvider } from '@mui/material/styles';
 import './index.css';
 import { Provider } from 'react-redux';
 import { persistor, store } from 'redux/store';
@@ -15,9 +15,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/admin-panel">
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <App />
+            </ThemeProvider>
+          </StyledEngineProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>

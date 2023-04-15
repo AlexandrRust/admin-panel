@@ -7,6 +7,8 @@ const initialState = {
   btnTitle: null,
   roles: [],
   fields: [],
+  perPage: null,
+  currentPage: null,
   filterInput: '',
 };
 
@@ -19,8 +21,16 @@ export const usersSlice = createSlice({
       state.usersList = action.payload.items.data;
       state.fields = action.payload.fields;
       state.title = action.payload.static.title;
-      state.btnTitle = action.payload.static.btnCreate;
+      state.btnTitle = action.payload.static.btnAction;
       state.roles = action.payload.roles;
+      state.currentPage = action.payload.items.current_page;
+      state.perPage = action.payload.items.per_page;
+    },
+    [usersOperations.addUser.fulfilled](state, action) {
+      state.usersList = action.payload.items.data;
+    },
+    [usersOperations.getUserByNickName.fulfilled](state, action) {
+      console.log(action.payload);
     },
 
     // // [authOperations.register.fulfilled](state, action) {

@@ -16,7 +16,7 @@ const SharedLayout = () => {
     <div
       style={{
         display: 'flex',
-        width: '100%',
+        // width: '100%',
         boxSizing: 'border-box',
         flexBasis: 'calc(100%/2)',
       }}

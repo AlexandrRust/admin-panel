@@ -1,4 +1,4 @@
-import Pageinput from '../inputFilter/InputFilter';
+import Pageinput from '../inputFilter/InputSearch';
 import { PageNavBox } from './common/PageNavBox.styled';
 import { PageNavList } from './common/PageNavList.styled';
 import { PageNavListItem } from './common/PageNavListItem.styled';

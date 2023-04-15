@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "https://alexandrrust.github.io/admin-panel/",
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.12.0",
+    "@mui/styled-engine-sc": "^5.12.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
