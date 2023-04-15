@@ -16,7 +16,7 @@ const FormUsers = ({ fields, path }) => {
     acc[id] = '';
     return acc;
   }, {});
-
+  console.log(fields);
   return (
     <Formik
       initialValues={res}
@@ -34,7 +34,12 @@ const FormUsers = ({ fields, path }) => {
               <LabelStyle htmlFor={elem.id}>
                 {elem.label}
                 <sup style={{ color: 'red', fontWeight: 'inherit' }}>*</sup>
-                {elem.tooltip && <GrCircleQuestion />}
+                {elem.tooltip && (
+                  <GrCircleQuestion
+                    style={{ cursor: 'pointer' }}
+                    title={elem.tooltip}
+                  />
+                )}
               </LabelStyle>
               <InputStyle
                 type="text"

@@ -53,7 +53,7 @@ const Users = () => {
           </Link>
         </PageHeader>
       </Section>
-      <Section>
+      <Section style={{ borderBottom: 'none' }}>
         <FilterBox>
           <InputSearch placeholder="User name" />
           <button
