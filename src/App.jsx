@@ -6,6 +6,7 @@ import PublicRoute from 'routes/PublicRoute';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
+import { RotatingLines } from 'react-loader-spinner';
 // import { useSelector } from 'react-redux';
 
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -41,7 +42,26 @@ export const App = () => {
         <div>Load...</div>
       ) : ( */}
       <>
-        <Suspense>
+        <Suspense
+          fallback={
+            <div
+              style={{
+                position: 'absolute',
+                top: '25%',
+                left: '50%',
+                transform: 'translate(0, -50%)',
+              }}
+            >
+              <RotatingLines
+                strokeColor="blue"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="96"
+                visible={true}
+              />
+            </div>
+          }
+        >
           <Routes>
             <Route
               path="auths/login"
@@ -79,6 +99,7 @@ export const App = () => {
                 element={<CreateCategoryProducts />}
               />
             </Route>
+            <Route path="*" element={<div></div>} />
           </Routes>
         </Suspense>
         <ToastContainer
