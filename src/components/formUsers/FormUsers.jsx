@@ -23,7 +23,7 @@ const FormUsers = ({ fields, path }) => {
       onSubmit={(values, actions) => {
         console.log(values);
         dispatch(usersOperations.addUser(values));
-        // navigate(path);
+        navigate(path);
         actions.resetForm();
       }}
     >
