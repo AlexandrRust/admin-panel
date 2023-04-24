@@ -85,7 +85,7 @@ const PageTable = ({ list, title, btnTitle }) => {
                         fill="blue"
                         data-value={elem.nickname}
                         onClick={handleClick}
-                        title="Update"
+                        title="Update user"
                         style={{ width: '20px', height: '20px' }}
                       />
                     </Link>
@@ -103,6 +103,7 @@ const PageTable = ({ list, title, btnTitle }) => {
                       <BiIdCard
                         fill="blue"
                         style={{ width: '20px', height: '20px' }}
+                        title="Show user info"
                       />
                     </Link>
                     <BiXCircle
@@ -114,7 +115,7 @@ const PageTable = ({ list, title, btnTitle }) => {
                       }}
                       type="button"
                       onClick={() => deleteUser(elem.nickname)}
-                      title="Delete"
+                      title="Delete user"
                     />
                   </div>
                 </TableTd>

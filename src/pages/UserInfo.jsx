@@ -1,4 +1,5 @@
 import { PageContentBox } from 'components/pageContentBox/PageContentBox.styled';
+import { PageTitle } from 'components/pageTitle/PageTtitle.styled';
 import { Section } from 'components/section/Section.styled';
 import { UserShowAvatarBox } from 'components/userShowAvatarBox/UserShowAvatarBox.styled';
 import { useEffect } from 'react';
@@ -28,7 +29,10 @@ const UserInfo = () => {
   return (
     <PageContentBox>
       <Section>
-        <BiArrowBack style={{ cursor: 'pointer' }} onClick={backIcon} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <BiArrowBack style={{ cursor: 'pointer' }} onClick={backIcon} />
+          <PageTitle>User Info</PageTitle>
+        </div>
       </Section>
       <UserShowBox>
         <UserShowCard>
