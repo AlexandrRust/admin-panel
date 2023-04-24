@@ -4,8 +4,7 @@ import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 
 import { ToastContainer } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
-import { authOperations, authSelectors } from 'redux/auth';
+import { useDispatch } from 'react-redux';
 import { RotatingLines } from 'react-loader-spinner';
 // import { useSelector } from 'react-redux';
 
@@ -20,6 +19,7 @@ const Menus = lazy(() => import('./pages/Menus'));
 const CreateMenus = lazy(() => import('./pages/CreateMenus'));
 const Users = lazy(() => import('./pages/Users'));
 const CreateUsers = lazy(() => import('./components/createUsers/CreateUsers'));
+const UpdateUser = lazy(() => import('components/updateUser/UpdateUser'));
 const Roles = lazy(() => import('./pages/Roles'));
 const Permissions = lazy(() => import('./pages/Permissions'));
 const Products = lazy(() => import('./pages/Products'));
@@ -31,7 +31,7 @@ const CreateCategoryProducts = lazy(() =>
 
 export const App = () => {
   const dispatch = useDispatch();
-  const IsRefreshingUser = useSelector(authSelectors.getIsRefreshingUser);
+  // const IsRefreshingUser = useSelector(authSelectors.getIsRefreshingUser);
   useEffect(() => {
     // dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
@@ -80,7 +80,7 @@ export const App = () => {
               }
             >
               <Route index element={<Dashboard />} />
-              <Route path="/userInfo" element={<UserInfo />} />
+              <Route path="/userShow/:user" element={<UserInfo />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/pages" element={<Pages />} />
               <Route path="/news" element={<News />} />
@@ -89,6 +89,7 @@ export const App = () => {
               <Route path="/menus/create" element={<CreateMenus />} />
               <Route path="/users" element={<Users />} />
               <Route path=":path/create" element={<CreateUsers />} />
+              <Route path=":path/update/:user" element={<UpdateUser />} />
               <Route path="/roles" element={<Roles />} />
               <Route path="/permissions" element={<Permissions />} />
               <Route path="/products" element={<Products />} />

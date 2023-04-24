@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const FilterBox = styled.div`
+export const UserShowListItem = styled.li`
   display: flex;
-  gap: 20px;
+  flex-direction: row;
   align-items: center;
-  margin-bottom: 10px;
+  gap: 20px;
 `;

@@ -2,18 +2,23 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from 'api/api';
 import { authLogIn } from 'api/authApi';
 
-export const logIn = createAsyncThunk('/pub/auths/login', async credentials => {
-  try {
-    const { data } = await authLogIn(credentials);
-    // console.log(data.data.api_token);
-    const getToken = data.data.api_token;
-    token.set(getToken);
-    return data.data;
-  } catch (error) {
-    alert(error.response.data.errors.message);
-    // toast.error(`${error.message}`);
+export const logIn = createAsyncThunk(
+  '/pub/auths/login',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await authLogIn(credentials);
+      // console.log(data.data.api_token);
+      const getToken = data.data.api_token;
+      token.set(getToken);
+      return data.data;
+    } catch (error) {
+      const err = thunkAPI.rejectWithValue(error.response.data);
+      return err;
+      // alert(error.response.data.errors.message);
+      // toast.error(`${error.message}`);
+    }
   }
-});
+);
 
 export const logOut = createAsyncThunk(
   '/pub/auths/logout',

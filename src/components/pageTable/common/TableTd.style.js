@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TableTd = styled.td`
   padding: 12px;
@@ -7,4 +7,5 @@ export const TableTd = styled.td`
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  text-align: start;
 `;

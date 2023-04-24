@@ -4,27 +4,39 @@ import { LabelStyle } from 'components/form/common/LabelStyle.styled';
 import { FormStyle } from 'components/form/FormStyle.styled';
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { usersOperations } from 'redux/users';
+import { usersOperations, usersSelectors } from 'redux/users';
 
 import { GrCircleQuestion } from 'react-icons/gr';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const FormUsers = ({ fields, path }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const res = fields.reduce((acc, { id }) => {
-    acc[id] = '';
+  const isCreate = useSelector(usersSelectors.getIsCreate);
+
+  const res = fields.reduce((acc, { id, value }) => {
+    if (!value) {
+      acc[id] = '';
+    } else {
+      acc[id] = value;
+    }
     return acc;
   }, {});
-  console.log(fields);
+  useEffect(() => {
+    if (isCreate) {
+      navigate(path);
+    }
+  }, [navigate, path, isCreate]);
+
   return (
     <Formik
       initialValues={res}
-      onSubmit={(values, actions) => {
-        console.log(values);
+      onSubmit={async (values, actions) => {
         dispatch(usersOperations.addUser(values));
-        navigate(path);
+        // navigate(path);
         actions.resetForm();
+        // console.log(status);
       }}
     >
       {props => (
@@ -45,7 +57,7 @@ const FormUsers = ({ fields, path }) => {
                 type="text"
                 onChange={props.handleChange}
                 onBlur={props.handleBlur}
-                // value={}
+                value={elem.value}
                 id={elem.id}
                 name={elem.id}
               />

@@ -15,7 +15,7 @@ const initialState = {
     status: null,
   },
   token: null,
-  isLoggedIn: false,
+  status: false,
   isRefreshingUser: false,
 };
 
@@ -32,6 +32,9 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.api_token;
       state.isLoggedIn = true;
+    },
+    [authOperations.logIn.rejected](state, action) {
+      state.status = action.payload.status;
     },
     [authOperations.logOut.fulfilled](state) {
       state.user = {
