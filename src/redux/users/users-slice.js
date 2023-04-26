@@ -31,7 +31,7 @@ export const usersSlice = createSlice({
       state.roles = action.payload.res.roles;
       state.currentPage = action.payload.res.items.current_page;
       state.perPage = action.payload.res.items.per_page;
-      state.total = action.payload.res.items.total;
+      state.total = action.payload.res.items.last_page;
       state.status = action.payload.status;
     },
     // [usersOperations.getUsers.pending](state, action) {
@@ -47,7 +47,7 @@ export const usersSlice = createSlice({
       state.isRefreshingUser = false;
       state.currentPage = action.payload.res.items.current_page;
       state.perPage = action.payload.res.items.per_page;
-      state.total = action.payload.res.items.total;
+      state.total = action.payload.res.items.last_page;
     },
     [usersOperations.addUser.pending](state, action) {
       state.isRefreshingUser = true;
@@ -66,7 +66,7 @@ export const usersSlice = createSlice({
       state.btnTitle = action.payload.res.static.btnAction;
       state.roles = action.payload.res.roles;
       state.currentPage = action.payload.res.items.current_page;
-      state.total = action.payload.res.items.total;
+      state.total = action.payload.res.items.last_page;
       state.perPage = action.payload.res.items.per_page;
       state.status = action.payload.status;
       state.isUpdate = false;
@@ -84,6 +84,9 @@ export const usersSlice = createSlice({
     },
     [usersOperations.UserDelete.fulfilled](state, action) {
       state.usersList = action.payload.res.items.data;
+      state.currentPage = action.payload.res.items.current_page;
+      state.total = action.payload.res.items.last_page;
+      state.perPage = action.payload.res.items.per_page;
     },
     [usersOperations.getUserShow.fulfilled](state, action) {
       state.userShow = action.payload.res.item;

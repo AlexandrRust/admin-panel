@@ -1,24 +1,32 @@
+import FormUsers from 'components/formUsers/FormUsers';
 import { PageContentBox } from 'components/pageContentBox/PageContentBox.styled';
 import { PageTitle } from 'components/pageTitle/PageTtitle.styled';
 import { Section } from 'components/section/Section.styled';
-import FormUsers from 'components/formUsers/FormUsers';
-import { useLocation, useNavigate } from 'react-router-dom';
-import theme from 'theme/theme';
+import { useEffect } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
-import { useDispatch } from 'react-redux';
-import { usersOperations } from 'redux/users';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { rolesOperations, rolesSelectors } from 'redux/roles';
+import theme from 'theme/theme';
 
-const CreateUsers = () => {
-  const dispatch = useDispatch();
+const CreateRoles = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isCreate = useSelector(rolesSelectors.getIsCreate);
   const { title, fields, btnTitle, prevPath } = location.state;
   const backIcon = () => {
     navigate(prevPath);
   };
   const submitForm = values => {
-    dispatch(usersOperations.addUser(values));
+    console.log(values);
+    dispatch(rolesOperations.addRoles(values));
   };
+  useEffect(() => {
+    if (isCreate) {
+      navigate(prevPath);
+    }
+  }, [navigate, prevPath, isCreate]);
   return (
     <PageContentBox>
       <Section>
@@ -41,4 +49,4 @@ const CreateUsers = () => {
   );
 };
 
-export default CreateUsers;
+export default CreateRoles;

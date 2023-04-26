@@ -175,13 +175,12 @@ export const userUpdate = createAsyncThunk(
         nickName,
       });
 
-      // const { data } = await usersGet();
-      // console.log(data.data);
-      // const getToken = data.data.api_token;
-      // token.set(getToken);
-      // const status = data.status;
-      // const res = data.data;
-      return;
+      const { data } = await usersGet();
+      const getToken = data.data.api_token;
+      token.set(getToken);
+      const status = data.status;
+      const res = data.data;
+      return { res, status };
     } catch (error) {
       const err = thunkAPI.rejectWithValue(error.response.data);
       console.log(err);

@@ -21,7 +21,6 @@ export const updateUser = (
   { firstname, lastname, email, phone, password, nickName },
   credentials
 ) => {
-  console.log(firstname);
   return axios.put(
     `sky/users/update/${nickName}?firstname=${firstname}&lastname=${lastname}&email=${email}&phone=${phone}&password=${password}`
   );

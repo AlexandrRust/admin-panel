@@ -1,0 +1,9 @@
+export const getRolesList = state => state.roles.rolesList;
+export const getTitle = state => state.roles.static.titlePage;
+export const getBtnTitle = state => state.roles.static.btnTitle;
+export const getTotalPage = state => state.roles.total;
+export const getPerPage = state => state.roles.perPage;
+export const getCurrentPage = state => state.roles.currentPage;
+export const getFieldsForm = state => state.roles.fields;
+export const getIsUpdate = state => state.roles.isUpdate;
+export const getIsCreate = state => state.roles.isCreate;

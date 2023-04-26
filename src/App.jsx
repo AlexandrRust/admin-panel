@@ -21,6 +21,8 @@ const Users = lazy(() => import('./pages/Users'));
 const CreateUsers = lazy(() => import('./components/createUsers/CreateUsers'));
 const UpdateUser = lazy(() => import('components/updateUser/UpdateUser'));
 const Roles = lazy(() => import('./pages/Roles'));
+const CreateRoles = lazy(() => import('./components/createRoles/CreateRoles'));
+const UpdateRoles = lazy(() => import('./components/updateRoles/UpdateRoles'));
 const Permissions = lazy(() => import('./pages/Permissions'));
 const Products = lazy(() => import('./pages/Products'));
 const CreateProduct = lazy(() => import('./pages/CreateProduct'));
@@ -88,9 +90,11 @@ export const App = () => {
               <Route path="/menus" element={<Menus />} />
               <Route path="/menus/create" element={<CreateMenus />} />
               <Route path="/users" element={<Users />} />
-              <Route path=":path/create" element={<CreateUsers />} />
-              <Route path=":path/update/:user" element={<UpdateUser />} />
+              <Route path="/users/create" element={<CreateUsers />} />
+              <Route path="/users/update/:user" element={<UpdateUser />} />
               <Route path="/roles" element={<Roles />} />
+              <Route path="/roles/create" element={<CreateRoles />} />
+              <Route path="/roles/update/:role" element={<UpdateRoles />} />
               <Route path="/permissions" element={<Permissions />} />
               <Route path="/products" element={<Products />} />
               <Route path="/products/create" element={<CreateProduct />} />

@@ -23,7 +23,6 @@ const Users = () => {
   const btnTitle = useSelector(usersSelectors.getBtnTitle);
   const formFields = useSelector(usersSelectors.GetFieldsForm);
   const status = useSelector(usersSelectors.getStatus);
-  const allPages = Math.ceil(total / getPerPage);
   useEffect(() => {
     dispath(usersOperations.getUsers(page));
   }, [dispath, page]);
@@ -42,7 +41,7 @@ const Users = () => {
               <PageTitle>{title}</PageTitle>
               <Link
                 style={theme.btn.btnGreen}
-                to={`${location.pathname}/create`}
+                to={`create`}
                 state={{
                   title: title,
                   fields: formFields,
@@ -64,7 +63,7 @@ const Users = () => {
               btnTitle={btnTitle}
             />
             <TablePagination
-              perPage={allPages}
+              allPage={total}
               list={usersList}
               onChange={handelClick}
               page={page}

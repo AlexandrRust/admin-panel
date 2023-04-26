@@ -1,23 +1,28 @@
-import { PageTableStyle } from './common/PageTableStyle.styled';
-import { TableTh } from './common/TableTh.style';
-import { TableTd } from './common/TableTd.style';
-import { TableThBox } from './common/TableThBox.styled';
+import { PageTableStyle } from 'components/pageTable/common/PageTableStyle.styled';
+import { TableTd } from 'components/pageTable/common/TableTd.style';
+import { TableTh } from 'components/pageTable/common/TableTh.style';
+import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
+import { BiEditAlt, BiXCircle } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
-import { usersOperations } from 'redux/users';
-import { Link, useLocation } from 'react-router-dom';
-import { BiEditAlt, BiIdCard, BiXCircle } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
+import { rolesOperations } from 'redux/roles';
 
-const PageTable = ({ list, title, btnTitle }) => {
-  const location = useLocation();
+const RolesTable = ({ list, title, btnTitle, prevPath }) => {
   const dispatch = useDispatch();
-  const deleteUser = nickName => {
-    dispatch(usersOperations.UserDelete(nickName));
-  };
-
   const handleClick = e => {
-    const nickName = e.currentTarget.dataset.value;
-    dispatch(usersOperations.UserFormGet(nickName));
+    const id = e.currentTarget.dataset.value;
+    // dispatch(rolesOperations.RoleDelete(id));
   };
+  const deleteRole = id => {
+    dispatch(rolesOperations.RoleDelete(id));
+  };
+  let tableTitles = [];
+  if (list.length === 0) {
+    return tableTitles;
+  } else {
+    tableTitles = Object.keys(list[0]);
+  }
+
   return (
     <>
       {list.length === 0 ? (
@@ -26,34 +31,22 @@ const PageTable = ({ list, title, btnTitle }) => {
         <PageTableStyle>
           <thead>
             <tr>
+              {tableTitles.map(elem => (
+                <TableTh key={elem}>
+                  <TableThBox>{elem}</TableThBox>
+                </TableTh>
+              ))}
               <TableTh>
-                <TableThBox>Firstname</TableThBox>
-              </TableTh>
-              <TableTh>
-                <TableThBox>Lastname</TableThBox>
-              </TableTh>
-              <TableTh>
-                <TableThBox>Nickname</TableThBox>
-              </TableTh>
-              <TableTh>
-                <TableThBox>Email</TableThBox>
-              </TableTh>
-              <TableTh>
-                <TableThBox>Phone</TableThBox>
-              </TableTh>
-              <TableTh>
-                <TableThBox>Actions</TableThBox>
+                <TableThBox style={{ width: '8%' }}>Actions</TableThBox>
               </TableTh>
             </tr>
           </thead>
           <tbody>
             {list.map(elem => (
               <tr key={elem.id}>
-                <TableTd>{elem.firstname}</TableTd>
-                <TableTd>{elem.lastname}</TableTd>
-                <TableTd>{elem.nickname}</TableTd>
-                <TableTd>{elem.email}</TableTd>
-                <TableTd>{elem.phone}</TableTd>
+                <TableTd>{elem.id}</TableTd>
+                <TableTd>{elem.alias}</TableTd>
+                <TableTd>{elem.title}</TableTd>
                 <TableTd style={{ width: '8%' }}>
                   <div
                     style={{
@@ -64,19 +57,16 @@ const PageTable = ({ list, title, btnTitle }) => {
                   >
                     <Link
                       style={{
-                        // textAlign: 'center',
                         display: 'flex',
                         alignItems: 'center',
-                        // gap: '5px',
                       }}
-                      to={`update/${elem.nickname}`}
-                      data-value={elem.nickname}
+                      to={`update/${elem.title}`}
+                      data-value={elem.id}
                       onClick={handleClick}
                       state={{
                         title: title,
-                        // fields: formFields,
                         btnTitle: btnTitle,
-                        prevPath: location.pathname,
+                        prevPath: prevPath,
                         nickName: elem.nickname,
                       }}
                     >
@@ -87,10 +77,8 @@ const PageTable = ({ list, title, btnTitle }) => {
                         style={{ width: '20px', height: '20px' }}
                       />
                     </Link>
-                    {/* <button value={elem.nickname} onClick={handleClick}>
-                    change
-                  </button> */}
-                    <Link
+
+                    {/* <Link
                       to={`/userShow/${elem.nickname}`}
                       state={{
                         prevPath: location.pathname,
@@ -103,7 +91,7 @@ const PageTable = ({ list, title, btnTitle }) => {
                         style={{ width: '20px', height: '20px' }}
                         title="Show user info"
                       />
-                    </Link>
+                    </Link> */}
                     <BiXCircle
                       fill="blue"
                       style={{
@@ -112,7 +100,7 @@ const PageTable = ({ list, title, btnTitle }) => {
                         height: '20px',
                       }}
                       type="button"
-                      onClick={() => deleteUser(elem.nickname)}
+                      onClick={() => deleteRole(elem.id)}
                       title="Delete user"
                     />
                   </div>
@@ -122,22 +110,12 @@ const PageTable = ({ list, title, btnTitle }) => {
           </tbody>
           <tfoot>
             <tr>
-              <TableTh>
-                <TableThBox>Firstname</TableThBox>
-              </TableTh>
-              <TableTh>
-                <TableThBox>Lastname</TableThBox>
-              </TableTh>
-              <TableTh>
-                <TableThBox>Email</TableThBox>
-              </TableTh>
-              <TableTh>
-                <TableThBox>Phone</TableThBox>
-              </TableTh>
-              <TableTh>
-                <TableThBox>Nickname</TableThBox>
-              </TableTh>
-              <TableTh>
+              {tableTitles.map(elem => (
+                <TableTh key={elem}>
+                  <TableThBox>{elem}</TableThBox>
+                </TableTh>
+              ))}
+              <TableTh style={{ width: '8%' }}>
                 <TableThBox>Actions</TableThBox>
               </TableTh>
             </tr>
@@ -148,4 +126,4 @@ const PageTable = ({ list, title, btnTitle }) => {
   );
 };
 
-export default PageTable;
+export default RolesTable;

@@ -5,7 +5,7 @@ import { FormStyle } from 'components/form/FormStyle.styled';
 import { PageContentBox } from 'components/pageContentBox/PageContentBox.styled';
 import { PageTitle } from 'components/pageTitle/PageTtitle.styled';
 import { Section } from 'components/section/Section.styled';
-import { Formik } from 'formik';
+import { FieldArray, Formik } from 'formik';
 import { useEffect } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,9 +23,12 @@ const UpdateUser = () => {
   const backIcon = () => {
     navigate(prevPath);
   };
-
   //    const res = formFields.map(elem => ) {firstname: '', lastname: '', email: '', phone: '', password: '', phone: ''}
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  let newArray = [];
+  // formFields.forEach(element => {
+  //   newArray.push({[element.id]: element.value });
+  // });
   const res = formFields.reduce((acc, { id, value }) => {
     if (!value) {
       acc[id] = '';
@@ -34,6 +37,7 @@ const UpdateUser = () => {
     }
     return acc;
   }, {});
+
   useEffect(() => {
     if (isUpdate) {
       navigate(prevPath);
@@ -58,21 +62,9 @@ const UpdateUser = () => {
             password: res.password,
           }}
           enableReinitialize
-          onSubmit={async (
-            { firstname, lastname, email, phone, password },
-            actions
-          ) => {
-            dispatch(
-              usersOperations.userUpdate({
-                firstname,
-                lastname,
-                email,
-                phone,
-                password,
-                nickName,
-                prevPath,
-              })
-            );
+          onSubmit={async (values, actions) => {
+            console.log(values);
+            dispatch(usersOperations.userUpdate(values));
             // navigate(path);
             // console.log(setFieldValue);
             // console.log(values);

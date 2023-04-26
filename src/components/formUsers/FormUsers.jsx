@@ -4,14 +4,13 @@ import { LabelStyle } from 'components/form/common/LabelStyle.styled';
 import { FormStyle } from 'components/form/FormStyle.styled';
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { usersOperations, usersSelectors } from 'redux/users';
+import { usersSelectors } from 'redux/users';
 
 import { GrCircleQuestion } from 'react-icons/gr';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-const FormUsers = ({ fields, path }) => {
-  const dispatch = useDispatch();
+const FormUsers = ({ fields, path, submitForm }) => {
   const navigate = useNavigate();
   const isCreate = useSelector(usersSelectors.getIsCreate);
 
@@ -33,8 +32,9 @@ const FormUsers = ({ fields, path }) => {
     <Formik
       initialValues={res}
       onSubmit={async (values, actions) => {
-        dispatch(usersOperations.addUser(values));
+        // dispatch(usersOperations.addUser(values));
         // navigate(path);
+        submitForm(values);
         actions.resetForm();
         // console.log(status);
       }}
