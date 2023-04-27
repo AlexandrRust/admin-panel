@@ -11,7 +11,7 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
   const dispatch = useDispatch();
   const handleClick = e => {
     const id = e.currentTarget.dataset.value;
-    // dispatch(rolesOperations.RoleDelete(id));
+    dispatch(rolesOperations.getRoleForm(id));
   };
   const deleteRole = id => {
     dispatch(rolesOperations.RoleDelete(id));
@@ -67,12 +67,12 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
                         title: title,
                         btnTitle: btnTitle,
                         prevPath: prevPath,
-                        nickName: elem.nickname,
+                        idRole: elem.id,
                       }}
                     >
                       <BiEditAlt
                         fill="blue"
-                        data-value={elem.nickname}
+                        data-value={elem.id}
                         title="Update user"
                         style={{ width: '20px', height: '20px' }}
                       />

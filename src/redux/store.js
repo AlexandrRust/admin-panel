@@ -6,6 +6,7 @@ import { serializableCheck } from '../constants/constants';
 import authSlice from './auth/auth-slice';
 import rolesSlice from './roles/roles-slice';
 import usersSlice from './users/users-slice';
+import logger from 'redux-logger';
 
 const authPersistConfig = {
   key: 'auth',
@@ -26,6 +27,7 @@ export const store = configureStore({
       serializableCheck,
       devTools: process.env.NODE_ENV === 'development',
     });
+    // .concat(logger)
   },
 });
 

@@ -22,7 +22,7 @@ const CreateUsers = lazy(() => import('./components/createUsers/CreateUsers'));
 const UpdateUser = lazy(() => import('components/updateUser/UpdateUser'));
 const Roles = lazy(() => import('./pages/Roles'));
 const CreateRoles = lazy(() => import('./components/createRoles/CreateRoles'));
-const UpdateRoles = lazy(() => import('./components/updateRoles/UpdateRoles'));
+const UpdateRole = lazy(() => import('components/updateRoles/UpdateRoles'));
 const Permissions = lazy(() => import('./pages/Permissions'));
 const Products = lazy(() => import('./pages/Products'));
 const CreateProduct = lazy(() => import('./pages/CreateProduct'));
@@ -94,7 +94,7 @@ export const App = () => {
               <Route path="/users/update/:user" element={<UpdateUser />} />
               <Route path="/roles" element={<Roles />} />
               <Route path="/roles/create" element={<CreateRoles />} />
-              <Route path="/roles/update/:role" element={<UpdateRoles />} />
+              <Route path="/roles/update/:role" element={<UpdateRole />} />
               <Route path="/permissions" element={<Permissions />} />
               <Route path="/products" element={<Products />} />
               <Route path="/products/create" element={<CreateProduct />} />

@@ -11,9 +11,7 @@ import { Section } from '../components/section/Section.styled';
 import theme from '../theme/theme';
 
 const Roles = () => {
-  const currentPage = useSelector(rolesSelectors.getCurrentPage);
   const [page, setPage] = useState(1);
-  // const [allPages, setAllPages] = useState(null);
   const location = useLocation();
   const dispatch = useDispatch();
   const titlePage = useSelector(rolesSelectors.getTitle);
@@ -22,14 +20,8 @@ const Roles = () => {
   const formFields = useSelector(rolesSelectors.getFieldsForm);
   const total = useSelector(rolesSelectors.getTotalPage);
 
-  const getPerPage = useSelector(rolesSelectors.getPerPage);
-  // const allPages = Math.ceil(total / getPerPage);
-
   useEffect(() => {
     dispatch(rolesOperations.getRoles(page));
-    // const allPages = Math.ceil(total / getPerPage);
-    // setAllPages(allPages);
-    // setPage(currentPage);
   }, [dispatch, page]);
   const handelClick = (e, page) => {
     setPage(page);

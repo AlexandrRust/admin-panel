@@ -130,13 +130,6 @@ export const usersSlice = createSlice({
     //   state.isRefreshingUser = false;
     // },
   },
-  reducers: {
-    addFilterInput: (state, action) => {
-      state.filterInput = action.payload;
-    },
-  },
 });
-
-export const { addFilterInput } = usersSlice.actions;
 
 export default usersSlice.reducer;

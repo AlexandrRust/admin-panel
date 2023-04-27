@@ -1,6 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from 'api/api';
-import { deleteRole, rolesCteate, rolesGet } from 'api/rolesApi';
+import {
+  deleteRole,
+  roleFormGet,
+  rolesCteate,
+  rolesGet,
+  roleUpdate,
+} from 'api/rolesApi';
 
 export const getRoles = createAsyncThunk(
   '/sky/roles',
@@ -72,17 +78,59 @@ export const RoleDelete = createAsyncThunk(
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken);
-    // const nickName = credentials.nickName;
     try {
-      // if (!nickName) {
-      //   const { data } = await usersGet();
-      //   return data.data;
-      // }
       await deleteRole(credentials);
 
       const { data } = await rolesGet();
       const getToken = data.data.api_token;
       token.set(getToken);
+      const status = data.status;
+      const res = data.data;
+      return { res, status };
+    } catch (error) {
+      const err = thunkAPI.rejectWithValue(error.response.data);
+      return err;
+      // alert(error.response.data.errors.message);
+      // toast.error(`${error.message}`);
+    }
+  }
+);
+
+export const getRoleForm = createAsyncThunk(
+  `/sky/roles/form`,
+  async (credentials, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue();
+    }
+    token.set(persistedToken);
+    try {
+      const { data } = await roleFormGet(credentials);
+      const status = data.status;
+      const res = data.data;
+      return { res, status };
+    } catch (error) {
+      const err = thunkAPI.rejectWithValue(error.response.data);
+      return err;
+      // alert(error.response.data.errors.message);
+      // toast.error(`${error.message}`);
+    }
+  }
+);
+
+export const updateRole = createAsyncThunk(
+  `/sky/roles/update`,
+  async (credentials, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue();
+    }
+    token.set(persistedToken);
+    try {
+      await roleUpdate(credentials);
+      const { data } = await rolesGet();
       const status = data.status;
       const res = data.data;
       return { res, status };

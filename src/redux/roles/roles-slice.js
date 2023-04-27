@@ -30,7 +30,6 @@ export const authSlice = createSlice({
       state.total = action.payload.res.items.last_page;
     },
     [rolesOperations.addRoles.fulfilled](state, action) {
-      console.log(action.payload);
       state.rolesList = action.payload.res.items.data;
       state.static.titlePage = action.payload.res.static.title;
       state.static.btnTitle = action.payload.res.static.btnAction;
@@ -48,6 +47,16 @@ export const authSlice = createSlice({
       state.currentPage = action.payload.res.items.current_page;
       state.perPage = action.payload.res.items.per_page;
       state.total = action.payload.res.items.last_page;
+    },
+    [rolesOperations.getRoleForm.fulfilled](state, action) {
+      console.log(action.payload);
+      state.fields = action.payload.res.fields;
+    },
+    [rolesOperations.updateRole.fulfilled](state, action) {
+      state.isUpdate = true;
+    },
+    [rolesOperations.updateRole.rejected](state, action) {
+      state.isUpdate = false;
     },
   },
 });

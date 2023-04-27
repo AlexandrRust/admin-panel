@@ -17,7 +17,6 @@ const Users = () => {
   const location = useLocation();
   const dispath = useDispatch();
   const total = useSelector(usersSelectors.getTotalPage);
-  const getPerPage = useSelector(usersSelectors.getPerPage);
   const usersList = useSelector(usersSelectors.GetUsersList);
   const title = useSelector(usersSelectors.getTitle);
   const btnTitle = useSelector(usersSelectors.getBtnTitle);
