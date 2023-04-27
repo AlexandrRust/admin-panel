@@ -18,7 +18,7 @@ const UpdateUser = () => {
   const location = useLocation();
   const formFields = useSelector(usersSelectors.GetFieldsForm);
   const navigate = useNavigate();
-  const { title, btnTitle, prevPath, nickName } = location.state;
+  const { title, btnTitle, prevPath } = location.state;
   const isUpdate = useSelector(usersSelectors.getIsUpdate);
   const backIcon = () => {
     navigate(prevPath);
@@ -44,7 +44,7 @@ const UpdateUser = () => {
       <Section>
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <BiArrowBack style={{ cursor: 'pointer' }} onClick={backIcon} />
-          <PageTitle>User Update</PageTitle>
+          <PageTitle>{title} Update</PageTitle>
         </div>
       </Section>
       <Section style={{ borderBottom: 'none' }}>

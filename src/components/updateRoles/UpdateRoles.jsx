@@ -20,7 +20,6 @@ const UpdateRoles = () => {
   const formFields = useSelector(rolesSelectors.getFieldsForm);
   const { title, btnTitle, prevPath, idRole } = location.state;
   const isUpdate = useSelector(rolesSelectors.getIsUpdate);
-  console.log(idRole);
   const backIcon = () => {
     navigate(prevPath);
   };
@@ -43,7 +42,7 @@ const UpdateRoles = () => {
       <Section>
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <BiArrowBack style={{ cursor: 'pointer' }} onClick={backIcon} />
-          <PageTitle>{title}</PageTitle>
+          <PageTitle>{title} Update</PageTitle>
         </div>
       </Section>
       <Section style={{ borderBottom: 'none' }}>

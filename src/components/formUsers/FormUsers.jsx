@@ -60,6 +60,7 @@ const FormUsers = ({ fields, path, submitForm }) => {
                 value={elem.value}
                 id={elem.id}
                 name={elem.id}
+                placeholder={elem.id}
               />
             </FormBox>
           ))}

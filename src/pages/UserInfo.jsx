@@ -25,7 +25,6 @@ const UserInfo = () => {
   const backIcon = () => {
     navigate(prevPath);
   };
-  console.log(userShow);
   return (
     <PageContentBox>
       <Section>

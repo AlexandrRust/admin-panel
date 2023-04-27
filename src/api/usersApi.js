@@ -11,7 +11,6 @@ export const userGetByNick = ({ nickName, role }, credentials) => {
   return axios.get(`/sky/users?search=${nickName}&role=${role}`, credentials);
 };
 export const userGetShow = ({ nickName }, credentials) => {
-  console.log(nickName);
   return axios.get(`/sky/users/show/${nickName}`, credentials);
 };
 export const getUserForm = credentials => {

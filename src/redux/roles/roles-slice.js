@@ -20,7 +20,6 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: {
     [rolesOperations.getRoles.fulfilled](state, action) {
-      console.log(action.payload);
       state.rolesList = action.payload.res.items.data;
       state.static.titlePage = action.payload.res.static.title;
       state.static.btnTitle = action.payload.res.static.btnAction;
@@ -49,7 +48,6 @@ export const authSlice = createSlice({
       state.total = action.payload.res.items.last_page;
     },
     [rolesOperations.getRoleForm.fulfilled](state, action) {
-      console.log(action.payload);
       state.fields = action.payload.res.fields;
     },
     [rolesOperations.updateRole.fulfilled](state, action) {

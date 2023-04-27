@@ -32,7 +32,7 @@ const CreateRoles = () => {
       <Section>
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <BiArrowBack style={{ cursor: 'pointer' }} onClick={backIcon} />
-          <PageTitle>{title}</PageTitle>
+          <PageTitle>{title} Create</PageTitle>
         </div>
       </Section>
       {fields.lenght === 0 ? (
