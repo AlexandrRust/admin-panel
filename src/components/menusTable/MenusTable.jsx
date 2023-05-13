@@ -10,7 +10,7 @@ import { menusOperations } from 'redux/menus';
 const MenusTable = ({ list, title, btnTitle, prevPath }) => {
   const dispatch = useDispatch();
   const handleClick = e => {
-    const id = e.currentTarget.dataset.value;
+    // const id = e.currentTarget.dataset.value;
     // dispatch(rolesOperations.getRoleForm(id));
   };
   const deleteRole = (id, name) => {
