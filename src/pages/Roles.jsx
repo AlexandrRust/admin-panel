@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { rolesOperations, rolesSelectors } from 'redux/roles';
-import RolesTable from 'rolesTable/RolesTable';
+import RolesTable from 'components/rolesTable/RolesTable';
 import { PageContentBox } from '../components/pageContentBox/PageContentBox.styled';
 import { PageHeader } from '../components/pageHeader/PageHeader.styled';
 import { PageTitle } from '../components/pageTitle/PageTtitle.styled';
@@ -11,7 +11,8 @@ import { Section } from '../components/section/Section.styled';
 import theme from '../theme/theme';
 
 const Roles = () => {
-  const [page, setPage] = useState(1);
+  const currentPage = useSelector(rolesSelectors.getCurrentPage);
+  const [page, setPage] = useState(currentPage);
   const location = useLocation();
   const dispatch = useDispatch();
   const titlePage = useSelector(rolesSelectors.getTitle);
@@ -24,7 +25,9 @@ const Roles = () => {
     dispatch(rolesOperations.getRoles(page));
   }, [dispatch, page]);
   const handelClick = (e, page) => {
-    setPage(page);
+    if (currentPage !== page) {
+      setPage(page);
+    }
   };
   return (
     <PageContentBox>

@@ -1,4 +1,5 @@
-import FormUsers from 'components/formUsers/FormUsers';
+import FormCreateUsers from 'components/formCreateUsers/FormCreateUsers';
+import FormCreate from 'components/formCreateUsers/FormCreateUsers';
 import { PageContentBox } from 'components/pageContentBox/PageContentBox.styled';
 import { PageTitle } from 'components/pageTitle/PageTtitle.styled';
 import { Section } from 'components/section/Section.styled';
@@ -19,7 +20,6 @@ const CreateRoles = () => {
     navigate(prevPath);
   };
   const submitForm = values => {
-    console.log(values);
     dispatch(rolesOperations.addRoles(values));
   };
   useEffect(() => {
@@ -39,7 +39,11 @@ const CreateRoles = () => {
         navigate(prevPath)
       ) : (
         <Section style={{ borderBottom: 'none' }}>
-          <FormUsers fields={fields} path={prevPath} submitForm={submitForm} />
+          <FormCreateUsers
+            fields={fields}
+            path={prevPath}
+            submitForm={submitForm}
+          />
           <button style={theme.btn.btnGreen} form="usersForm" type="submit">
             {btnTitle}
           </button>

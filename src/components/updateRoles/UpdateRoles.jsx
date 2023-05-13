@@ -74,7 +74,7 @@ const UpdateRoles = () => {
               <FormBox>
                 <LabelStyle htmlFor="alias">Alias</LabelStyle>
                 <InputStyle
-                  type="alias"
+                  type="text"
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
                   value={props.values.alias}

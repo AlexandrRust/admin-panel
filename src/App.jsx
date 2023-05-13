@@ -16,7 +16,8 @@ const Pages = lazy(() => import('./pages/Pages'));
 const News = lazy(() => import('./pages/News'));
 const Bunners = lazy(() => import('./pages/Banners'));
 const Menus = lazy(() => import('./pages/Menus'));
-const CreateMenus = lazy(() => import('./pages/CreateMenus'));
+const CreateMenus = lazy(() => import('./components/createMenus/CreateMenus'));
+const UpdateMenus = lazy(() => import('./components/updateMenus/UpdateMenus'));
 const Users = lazy(() => import('./pages/Users'));
 const CreateUsers = lazy(() => import('./components/createUsers/CreateUsers'));
 const UpdateUser = lazy(() => import('components/updateUser/UpdateUser'));
@@ -89,6 +90,7 @@ export const App = () => {
               <Route path="/bunners" element={<Bunners />} />
               <Route path="/menus" element={<Menus />} />
               <Route path="/menus/create" element={<CreateMenus />} />
+              <Route path="/menus/update/:menuItem" element={<UpdateMenus />} />
               <Route path="/users" element={<Users />} />
               <Route path="/users/create" element={<CreateUsers />} />
               <Route path="/users/update/:user" element={<UpdateUser />} />

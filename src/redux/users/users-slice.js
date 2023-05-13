@@ -23,7 +23,6 @@ export const usersSlice = createSlice({
   initialState,
   extraReducers: {
     [usersOperations.getUsers.fulfilled](state, action) {
-      console.log(action.payload.res.items.total);
       state.usersList = action.payload.res.items.data;
       state.fields = action.payload.res.fields;
       state.title = action.payload.res.static.title;
@@ -33,6 +32,8 @@ export const usersSlice = createSlice({
       state.perPage = action.payload.res.items.per_page;
       state.total = action.payload.res.items.last_page;
       state.status = action.payload.status;
+      state.isCreate = false;
+      state.isUpdate = false;
     },
     // [usersOperations.getUsers.pending](state, action) {
     //   console.log(action);
@@ -41,25 +42,26 @@ export const usersSlice = createSlice({
       state.status = action.payload.status;
     },
     [usersOperations.addUser.fulfilled](state, action) {
-      state.usersList = action.payload.res.items.data;
-      state.status = action.payload.status;
+      // state.usersList = action.payload.res.items.data;
+      // state.title = action.payload.res.static.title;
+      // state.btnTitle = action.payload.res.static.btnAction;
+      // state.fields = action.payload.res.fields;
       state.isCreate = true;
-      state.isRefreshingUser = false;
-      state.currentPage = action.payload.res.items.current_page;
-      state.perPage = action.payload.res.items.per_page;
-      state.total = action.payload.res.items.last_page;
+      // state.roles = action.payload.res.roles;
+      // state.currentPage = action.payload.res.items.current_page;
+      // state.perPage = action.payload.res.items.per_page;
+      // state.total = action.payload.res.items.last_page;
     },
-    [usersOperations.addUser.pending](state, action) {
-      state.isRefreshingUser = true;
-      // state.status = false;
-    },
+    // [usersOperations.addUser.pending](state, action) {
+    //   // state.isRefreshingUser = true;
+    //   // state.status = false;
+    // },
     [usersOperations.addUser.rejected](state, action) {
-      state.isRefreshingUser = false;
+      // state.isRefreshingUser = false;
       state.isCreate = false;
       // state.status = action.payload.status;
     },
     [usersOperations.getUserByNickName.fulfilled](state, action) {
-      console.log(action.payload);
       state.usersList = action.payload.res.items.data;
       state.fields = action.payload.res.fields;
       state.title = action.payload.res.static.title;
@@ -72,7 +74,6 @@ export const usersSlice = createSlice({
       state.isUpdate = false;
     },
     [usersOperations.UserFormGet.fulfilled](state, action) {
-      console.log(action.payload);
       state.status = action.payload.status;
       state.fields = action.payload.res.fields;
     },

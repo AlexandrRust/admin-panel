@@ -41,6 +41,13 @@ export const getUsers = createAsyncThunk(
 export const addUser = createAsyncThunk(
   '/sky/users/create',
   async (credentials, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue();
+    }
+    token.set(persistedToken);
     try {
       await userPost(credentials);
       const { data } = await usersGet();
@@ -66,7 +73,7 @@ export const addUser = createAsyncThunk(
 );
 
 export const getUserByNickName = createAsyncThunk(
-  `/sky/users`,
+  `/sky/user`,
   async (credentials, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -136,7 +143,6 @@ export const UserFormGet = createAsyncThunk(
       //   const { data } = await usersGet();
       //   return data.data;
       // }
-      console.log(credentials);
       const { data } = await getUserForm(credentials);
       const status = data.status;
       const res = data.data;
@@ -196,26 +202,32 @@ export const UserDelete = createAsyncThunk(
   async (credentials, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
+    const persistedCurentPage = state.users.currentPage;
 
     if (!persistedToken) {
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken);
-    // const nickName = credentials.nickName;
     try {
-      // if (!nickName) {
-      //   const { data } = await usersGet();
-      //   return data.data;
-      // }
       await deleteUser(credentials);
 
-      const { data } = await usersGet();
-      console.log(data.data);
-      const getToken = data.data.api_token;
-      token.set(getToken);
-      const status = data.status;
-      const res = data.data;
-      return { res, status };
+      const { data } = await usersGet(persistedCurentPage);
+
+      if (data.data.items.data.length >= 1) {
+        const res = data.data;
+        const getToken = data.data.api_token;
+        token.set(getToken);
+        const status = data.status;
+        return { res, status };
+      }
+      if (data.data.items.data.length < 1) {
+        const { data } = await usersGet(1);
+        const res = data.data;
+        const getToken = data.data.api_token;
+        token.set(getToken);
+        const status = data.status;
+        return { res, status };
+      }
     } catch (error) {
       const err = thunkAPI.rejectWithValue(error.response.data);
       return err;

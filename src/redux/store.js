@@ -6,7 +6,7 @@ import { serializableCheck } from '../constants/constants';
 import authSlice from './auth/auth-slice';
 import rolesSlice from './roles/roles-slice';
 import usersSlice from './users/users-slice';
-import logger from 'redux-logger';
+import menusSlice from './menus/menus-slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -21,13 +21,13 @@ export const store = configureStore({
     auth: persistAuth,
     users: usersSlice,
     roles: rolesSlice,
+    menus: menusSlice,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
       serializableCheck,
       devTools: process.env.NODE_ENV === 'development',
     });
-    // .concat(logger)
   },
 });
 

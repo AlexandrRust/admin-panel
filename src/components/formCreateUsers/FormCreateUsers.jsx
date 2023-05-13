@@ -3,18 +3,12 @@ import { InputStyle } from 'components/form/common/InputStyle.styled';
 import { LabelStyle } from 'components/form/common/LabelStyle.styled';
 import { FormStyle } from 'components/form/FormStyle.styled';
 import { Formik } from 'formik';
-import { useNavigate } from 'react-router-dom';
-import { usersSelectors } from 'redux/users';
 
 import { GrCircleQuestion } from 'react-icons/gr';
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
-const FormUsers = ({ fields, path, submitForm }) => {
-  const navigate = useNavigate();
-  const isCreate = useSelector(usersSelectors.getIsCreate);
-
-  const res = fields.reduce((acc, { id, value }) => {
+const FormCreateUsers = ({ fields, submitForm }) => {
+  const filterFields = fields.filter(elem => elem === Object(elem));
+  const res = filterFields.reduce((acc, { id, value }) => {
     if (!value) {
       acc[id] = '';
     } else {
@@ -22,11 +16,6 @@ const FormUsers = ({ fields, path, submitForm }) => {
     }
     return acc;
   }, {});
-  useEffect(() => {
-    if (isCreate) {
-      navigate(path);
-    }
-  }, [navigate, path, isCreate]);
 
   return (
     <Formik
@@ -41,7 +30,7 @@ const FormUsers = ({ fields, path, submitForm }) => {
     >
       {props => (
         <FormStyle onSubmit={props.handleSubmit} id="usersForm">
-          {fields.map(elem => (
+          {filterFields.map(elem => (
             <FormBox key={elem.id}>
               <LabelStyle htmlFor={elem.id}>
                 {elem.label}
@@ -53,8 +42,9 @@ const FormUsers = ({ fields, path, submitForm }) => {
                   />
                 )}
               </LabelStyle>
+
               <InputStyle
-                type="text"
+                type={elem.type}
                 onChange={props.handleChange}
                 onBlur={props.handleBlur}
                 value={elem.value}
@@ -70,4 +60,4 @@ const FormUsers = ({ fields, path, submitForm }) => {
   );
 };
 
-export default FormUsers;
+export default FormCreateUsers;

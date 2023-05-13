@@ -1,0 +1,11 @@
+export const getMenusList = state => state.menus.menusList;
+export const getTitle = state => state.menus.title;
+export const getBtnTitle = state => state.menus.btnTitle;
+export const GetFieldsForm = state => state.menus.fields;
+// export const GetFilterInput = state => state.users.filterInput;
+export const getTotalPage = state => state.menus.total;
+export const getPerPage = state => state.menus.perPage;
+export const getCurrentPage = state => state.menus.currentPage;
+export const getStatus = state => state.menus.status;
+export const getIsUpdate = state => state.menus.isUpdate;
+export const getIsCreate = state => state.menus.isCreate;
