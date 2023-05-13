@@ -1,0 +1,11 @@
+export const getCountryList = state => state.country.countryList;
+export const getTitle = state => state.country.title;
+export const getBtnTitle = state => state.country.btnTitle;
+export const getFieldsForm = state => state.country.fields;
+// export const GetFilterInput = state => state.users.filterInput;
+export const getTotalPage = state => state.country.total;
+export const getPerPage = state => state.country.perPage;
+export const getCurrentPage = state => state.country.currentPage;
+export const getStatus = state => state.country.status;
+export const getIsUpdate = state => state.country.isUpdate;
+export const getIsCreate = state => state.country.isCreate;

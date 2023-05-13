@@ -11,7 +11,13 @@ const PageTable = ({ list, title, btnTitle }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const deleteUser = nickName => {
-    dispatch(usersOperations.UserDelete(nickName));
+    // eslint-disable-next-line no-restricted-globals
+    const getconfirm = confirm(
+      `Вы действительно хотите удалить пользователя ${nickName}`
+    );
+    if (getconfirm) {
+      dispatch(usersOperations.UserDelete(nickName));
+    }
   };
 
   const handleClick = e => {

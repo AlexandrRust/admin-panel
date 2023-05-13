@@ -136,8 +136,8 @@ const Menu = () => {
             </MenuLink>
           </MenuItem>
           <MenuItem>
-            <MenuLink to="/locations/sity">
-              <MenuItemTitle>Sity</MenuItemTitle>
+            <MenuLink to="/locations/city">
+              <MenuItemTitle>City</MenuItemTitle>
             </MenuLink>
           </MenuItem>
         </SubList>

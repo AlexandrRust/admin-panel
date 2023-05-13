@@ -1,0 +1,11 @@
+export const getLanguagesList = state => state.languages.languagesList;
+export const getTitle = state => state.languages.title;
+export const getBtnTitle = state => state.languages.btnTitle;
+export const getFieldsForm = state => state.languages.fields;
+// export const GetFilterInput = state => state.users.filterInput;
+export const getTotalPage = state => state.languages.total;
+export const getPerPage = state => state.languages.perPage;
+export const getCurrentPage = state => state.languages.currentPage;
+export const getStatus = state => state.languages.status;
+export const getIsUpdate = state => state.languages.isUpdate;
+export const getIsCreate = state => state.languages.isCreate;

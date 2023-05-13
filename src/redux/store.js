@@ -7,6 +7,9 @@ import authSlice from './auth/auth-slice';
 import rolesSlice from './roles/roles-slice';
 import usersSlice from './users/users-slice';
 import menusSlice from './menus/menus-slice';
+import languagesSlice from './languages/languages-slice';
+import countrySlice from './country/country-slice';
+import citySlice from './city/city-slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -22,6 +25,9 @@ export const store = configureStore({
     users: usersSlice,
     roles: rolesSlice,
     menus: menusSlice,
+    languages: languagesSlice,
+    country: countrySlice,
+    city: citySlice,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

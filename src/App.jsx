@@ -27,7 +27,7 @@ const CreateMenus = lazy(() => import('./components/createMenus/CreateMenus'));
 const UpdateMenus = lazy(() => import('./components/updateMenus/UpdateMenus'));
 const Languages = lazy(() => import('./pages/Languages'));
 const Country = lazy(() => import('./pages/Country'));
-const Sity = lazy(() => import('./pages/Sity'));
+const City = lazy(() => import('./pages/City'));
 const Products = lazy(() => import('./pages/Products'));
 const CreateProduct = lazy(() => import('./pages/CreateProduct'));
 const CategoryProducts = lazy(() => import('./pages/CategoryProducts'));
@@ -103,7 +103,7 @@ export const App = () => {
               <Route path="/permissions" element={<Permissions />} />
               <Route path="/locations/languages" element={<Languages />} />
               <Route path="/locations/country" element={<Country />} />
-              <Route path="/locations/sity" element={<Sity />} />
+              <Route path="/locations/city" element={<City />} />
               <Route path="/products" element={<Products />} />
               <Route path="/products/create" element={<CreateProduct />} />
               <Route path="/categoryProducts" element={<CategoryProducts />} />

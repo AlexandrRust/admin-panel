@@ -1,28 +1,30 @@
-import LanguagesTable from 'components/languagesTable/LanguagesTable';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { cityOperations, citySelectors } from 'redux/city';
+
 import { PageContentBox } from 'components/pageContentBox/PageContentBox.styled';
 import { PageHeader } from 'components/pageHeader/PageHeader.styled';
 import { PageTitle } from 'components/pageTitle/PageTtitle.styled';
 import { Section } from 'components/section/Section.styled';
-import TablePagination from 'components/tablePagination/TablePagination';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
-import { languagesOperations, languagesSelectors } from 'redux/languages';
-import theme from 'theme/theme';
 
-const Languages = () => {
-  const currentPage = useSelector(languagesSelectors.getCurrentPage);
+import theme from 'theme/theme';
+import TablePagination from 'components/tablePagination/TablePagination';
+import CityTable from 'components/cityTable/CityTable';
+
+const City = () => {
+  const currentPage = useSelector(citySelectors.getCurrentPage);
   const [page, setPage] = useState(currentPage);
   const location = useLocation();
   const dispatch = useDispatch();
-  const titlePage = useSelector(languagesSelectors.getTitle);
-  const btnTitle = useSelector(languagesSelectors.getBtnTitle);
-  const formFields = useSelector(languagesSelectors.getFieldsForm);
-  const languagesList = useSelector(languagesSelectors.getLanguagesList);
-  const total = useSelector(languagesSelectors.getTotalPage);
+  const titlePage = useSelector(citySelectors.getTitle);
+  const btnTitle = useSelector(citySelectors.getBtnTitle);
+  const formFields = useSelector(citySelectors.getFieldsForm);
+  const languagesList = useSelector(citySelectors.getCityList);
+  const total = useSelector(citySelectors.getTotalPage);
 
   useEffect(() => {
-    dispatch(languagesOperations.getLanguages(page));
+    dispatch(cityOperations.getCity(page));
   }, [dispatch, page]);
 
   const handelClick = (e, page) => {
@@ -50,7 +52,7 @@ const Languages = () => {
         </PageHeader>
       </Section>
       <Section>
-        <LanguagesTable
+        <CityTable
           list={languagesList}
           title={titlePage}
           btnTitle={btnTitle}
@@ -67,4 +69,4 @@ const Languages = () => {
   );
 };
 
-export default Languages;
+export default City;

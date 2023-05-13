@@ -2,31 +2,33 @@ import { PageTableStyle } from 'components/pageTable/common/PageTableStyle.style
 import { TableTd } from 'components/pageTable/common/TableTd.style';
 import { TableTh } from 'components/pageTable/common/TableTh.style';
 import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
-import { BiEditAlt, BiXCircle } from 'react-icons/bi';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { rolesOperations } from 'redux/roles';
+import { BiXCircle } from 'react-icons/bi';
 
-const RolesTable = ({ list, title, btnTitle, prevPath }) => {
-  const dispatch = useDispatch();
-  const handleClick = e => {
-    const id = e.currentTarget.dataset.value;
-    dispatch(rolesOperations.getRoleForm(id));
-  };
-  const deleteRole = (id, title) => {
+const CountryTable = ({ list, title, btnTitle, prevPath }) => {
+  //   const dispatch = useDispatch();
+  //   const handleClick = e => {
+  //     const id = e.currentTarget.dataset.value;
+  //     dispatch(rolesOperations.getRoleForm(id));
+  //   };
+  const handleDelete = (id, name) => {
     // eslint-disable-next-line no-restricted-globals
     const getconfirm = confirm(
-      `Вы действительно хотите удалить роль "${title}"`
+      `Вы действительно хотите удалить страну ${name}`
     );
     if (getconfirm) {
-      dispatch(rolesOperations.RoleDelete(id));
+      console.log(id);
     }
+    // dispatch(rolesOperations.RoleDelete(id));
+    // alert(isAdmin);
   };
   let tableTitles = [];
   if (list.length === 0) {
     return tableTitles;
   } else {
-    tableTitles = Object.keys(list[0]);
+    const tableTitlesFilter = Object.keys(list[0]);
+    tableTitles = tableTitlesFilter.filter(
+      elem => elem !== 'updated_at' && elem !== 'created_at'
+    );
   }
 
   return (
@@ -51,8 +53,10 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
             {list.map(elem => (
               <tr key={elem.id}>
                 <TableTd>{elem.id}</TableTd>
-                <TableTd>{elem.alias}</TableTd>
-                <TableTd>{elem.title}</TableTd>
+                <TableTd>{elem.name.en}</TableTd>
+                <TableTd>{elem.shortname}</TableTd>
+                <TableTd>{elem.phone_code}</TableTd>
+                {/* <TableTd>{elem.status}</TableTd> */}
                 <TableTd style={{ width: '8%' }}>
                   <div
                     style={{
@@ -61,43 +65,6 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
                       gap: '12px',
                     }}
                   >
-                    <Link
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                      to={`update/${elem.title}`}
-                      data-value={elem.id}
-                      onClick={handleClick}
-                      state={{
-                        title: title,
-                        btnTitle: btnTitle,
-                        prevPath: prevPath,
-                        idRole: elem.id,
-                      }}
-                    >
-                      <BiEditAlt
-                        fill="blue"
-                        data-value={elem.id}
-                        title="Update user"
-                        style={{ width: '20px', height: '20px' }}
-                      />
-                    </Link>
-
-                    {/* <Link
-                      to={`/userShow/${elem.nickname}`}
-                      state={{
-                        prevPath: location.pathname,
-                        nickName: elem.nickname,
-                      }}
-                      style={{ display: 'flex', alignItems: 'center' }}
-                    >
-                      <BiIdCard
-                        fill="blue"
-                        style={{ width: '20px', height: '20px' }}
-                        title="Show user info"
-                      />
-                    </Link> */}
                     <BiXCircle
                       fill="blue"
                       style={{
@@ -106,7 +73,7 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
                         height: '20px',
                       }}
                       type="button"
-                      onClick={() => deleteRole(elem.id, elem.title)}
+                      onClick={() => handleDelete(elem.id, elem.name.en)}
                       title="Delete user"
                     />
                   </div>
@@ -132,4 +99,4 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
   );
 };
 
-export default RolesTable;
+export default CountryTable;

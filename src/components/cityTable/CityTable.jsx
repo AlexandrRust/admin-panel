@@ -2,25 +2,22 @@ import { PageTableStyle } from 'components/pageTable/common/PageTableStyle.style
 import { TableTd } from 'components/pageTable/common/TableTd.style';
 import { TableTh } from 'components/pageTable/common/TableTh.style';
 import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
-import { BiEditAlt, BiXCircle } from 'react-icons/bi';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { menusOperations } from 'redux/menus';
+import { BiXCircle } from 'react-icons/bi';
 
-const MenusTable = ({ list, title, btnTitle, prevPath }) => {
-  const dispatch = useDispatch();
-  const handleClick = e => {
-    const id = e.currentTarget.dataset.value;
-    // dispatch(rolesOperations.getRoleForm(id));
-  };
-  const deleteRole = (id, name) => {
+const CityTable = ({ list, title, btnTitle, prevPath }) => {
+  //   const dispatch = useDispatch();
+  //   const handleClick = e => {
+  //     const id = e.currentTarget.dataset.value;
+  //     dispatch(rolesOperations.getRoleForm(id));
+  //   };
+  const handleDelete = (id, name) => {
     // eslint-disable-next-line no-restricted-globals
-    const getconfirm = confirm(
-      `Вы действительно хотите удалить пункт меню ${name}`
-    );
+    const getconfirm = confirm(`Вы действительно хотите удалить город ${name}`);
     if (getconfirm) {
-      dispatch(menusOperations.menusDelete(id));
+      console.log(id);
     }
+    // dispatch(rolesOperations.RoleDelete(id));
+    // alert(isAdmin);
   };
   let tableTitles = [];
   if (list.length === 0) {
@@ -54,11 +51,8 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
             {list.map(elem => (
               <tr key={elem.id}>
                 <TableTd>{elem.id}</TableTd>
-                <TableTd>{elem.title}</TableTd>
-                <TableTd>{elem.path}</TableTd>
-                <TableTd>{elem.parent}</TableTd>
-                <TableTd>{elem.type}</TableTd>
-                <TableTd>{elem.sort_order}</TableTd>
+                <TableTd>{elem.name.en}</TableTd>
+                <TableTd>{elem.state_id}</TableTd>
                 <TableTd style={{ width: '8%' }}>
                   <div
                     style={{
@@ -67,30 +61,6 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
                       gap: '12px',
                     }}
                   >
-                    <Link
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}
-                      to={`update/${elem.title.toLowerCase()}`}
-                      data-value={elem.id}
-                      onClick={handleClick}
-                      state={{
-                        title: title,
-                        btnTitle: btnTitle,
-                        prevPath: prevPath,
-                        idMenus: elem.id,
-                        list: list,
-                      }}
-                    >
-                      <BiEditAlt
-                        fill="blue"
-                        data-value={elem.id}
-                        title="Update user"
-                        style={{ width: '20px', height: '20px' }}
-                      />
-                    </Link>
-
                     <BiXCircle
                       fill="blue"
                       style={{
@@ -99,7 +69,7 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
                         height: '20px',
                       }}
                       type="button"
-                      onClick={() => deleteRole(elem.id, elem.title)}
+                      onClick={() => handleDelete(elem.id, elem.name.en)}
                       title="Delete user"
                     />
                   </div>
@@ -125,4 +95,4 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
   );
 };
 
-export default MenusTable;
+export default CityTable;
