@@ -109,6 +109,40 @@ const Menu = () => {
         <SubList></SubList>
       </div>
       <div>
+        <MenuItemTitle data-title="locations" onClick={OpenSubMenu}>
+          Locations
+          <BiChevronLeft
+            style={
+              menuItemOpen.find(elem => elem === 'locations') && {
+                rotate: '-90deg',
+              }
+            }
+          />
+        </MenuItemTitle>
+        <SubList
+          hidden={
+            !menuItemOpen.find(elem => elem === 'locations') ||
+            menuItemOpen === []
+          }
+        >
+          <MenuItem>
+            <MenuLink to="/locations/languages">
+              <MenuItemTitle>Languages</MenuItemTitle>
+            </MenuLink>
+          </MenuItem>
+          <MenuItem>
+            <MenuLink to="/locations/country">
+              <MenuItemTitle>Country</MenuItemTitle>
+            </MenuLink>
+          </MenuItem>
+          <MenuItem>
+            <MenuLink to="/locations/sity">
+              <MenuItemTitle>Sity</MenuItemTitle>
+            </MenuLink>
+          </MenuItem>
+        </SubList>
+      </div>
+      <div>
         <MenuItemTitle data-title="products" onClick={OpenSubMenu}>
           Products
           <BiChevronLeft
