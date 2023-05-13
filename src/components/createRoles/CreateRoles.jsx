@@ -1,5 +1,4 @@
 import FormCreateUsers from 'components/formCreateUsers/FormCreateUsers';
-import FormCreate from 'components/formCreateUsers/FormCreateUsers';
 import { PageContentBox } from 'components/pageContentBox/PageContentBox.styled';
 import { PageTitle } from 'components/pageTitle/PageTtitle.styled';
 import { Section } from 'components/section/Section.styled';
