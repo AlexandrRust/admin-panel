@@ -21,7 +21,8 @@ export const menusUpdate = (
   credentials
 ) => {
   return axios.put(
-    `sky/menus/update/${idMenus}?title=${title}&path=${path}&parent=${parent}&type=${type}&sortOrder=${sortOrder}`,
+    `sky/menus/update/${idMenus}?title=${title}&path=${path}&parent=${parent}&type=${type}&sort_order=${sortOrder}`,
     credentials
   );
 };
+// sky/menus/update/52?title=fer&path=fer&parent=1&type=admin&sort_order=1

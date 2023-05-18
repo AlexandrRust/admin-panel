@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux';
+
+import { languagesOperations } from 'redux/languages';
+
 import { PageTableStyle } from 'components/pageTable/common/PageTableStyle.styled';
 import { TableTd } from 'components/pageTable/common/TableTd.style';
 import { TableTh } from 'components/pageTable/common/TableTh.style';
@@ -5,7 +9,7 @@ import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
 import { BiXCircle } from 'react-icons/bi';
 
 const LanguagesTable = ({ list, title, btnTitle, prevPath }) => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   //   const handleClick = e => {
   //     const id = e.currentTarget.dataset.value;
   //     dispatch(rolesOperations.getRoleForm(id));
@@ -14,7 +18,7 @@ const LanguagesTable = ({ list, title, btnTitle, prevPath }) => {
     // eslint-disable-next-line no-restricted-globals
     const getconfirm = confirm(`Вы действительно хотите удалить язык ${name}`);
     if (getconfirm) {
-      console.log(id);
+      dispatch(languagesOperations.deleteLanguages(id));
     }
     // dispatch(rolesOperations.RoleDelete(id));
     // alert(isAdmin);

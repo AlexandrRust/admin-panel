@@ -38,6 +38,9 @@ const UpdateMenus = () => {
     return acc;
   }, {});
   useEffect(() => {
+    setParent(res.parent);
+  }, [res.parent]);
+  useEffect(() => {
     dispatch(menusOperations.getMenusFrom(idMenus));
   }, [dispatch, idMenus]);
 
@@ -59,13 +62,14 @@ const UpdateMenus = () => {
           initialValues={{
             title: res.title,
             path: res.path,
-            parent: res.parent,
+            parent: parent,
             type: res.type,
             sortOrder: res.sortOrder,
           }}
           enableReinitialize
           onSubmit={async (values, actions) => {
-            const formValues = { ...values, parent, idMenus };
+            console.log(values);
+            const formValues = { ...values, idMenus };
             dispatch(menusOperations.updateMenus(formValues));
           }}
         >

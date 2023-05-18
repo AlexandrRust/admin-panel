@@ -55,6 +55,12 @@ export const menusSlice = createSlice({
     [menusOperations.getMenusFrom.fulfilled](state, action) {
       state.fields = action.payload.res.fields;
     },
+    [menusOperations.updateMenus.fulfilled](state, action) {
+      state.isUpdate = true;
+    },
+    [menusOperations.updateMenus.rejected](state, action) {
+      state.isUpdate = false;
+    },
   },
 });
 

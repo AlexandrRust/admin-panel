@@ -13,6 +13,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 ul {
   list-style: none;
 }
@@ -25,5 +26,14 @@ ul {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+@keyframes modalAnim {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

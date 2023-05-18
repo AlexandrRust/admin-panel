@@ -26,7 +26,7 @@ const CreateMenusForm = ({ fields, submitForm, menuList }) => {
     <Formik
       initialValues={res}
       onSubmit={async (values, actions) => {
-        const getValues = { ...values, parent };
+        const getValues = { ...values, parent: parent };
         submitForm(getValues);
         actions.resetForm();
       }}

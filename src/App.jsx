@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 
@@ -47,7 +47,7 @@ export const App = () => {
       {/* {IsRefreshingUser ? (
         <div>Load...</div>
       ) : ( */}
-      <>
+      <div style={{ position: 'relative' }}>
         <Suspense
           fallback={
             <div
@@ -115,9 +115,20 @@ export const App = () => {
             <Route path="*" element={<div></div>} />
           </Routes>
         </Suspense>
-        <ToastContainer
+        {/* <div
+          style={{
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            width: '1000%',
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            // transform: 'translate(0, -50%)',
+          }}
+        >
+        </div> */}
+        {/* <ToastContainer
           position="top-right"
-          autoClose={5000}
+          autoClose={1000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -125,8 +136,9 @@ export const App = () => {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-        />
-      </>
+          theme="colored"
+        /> */}
+      </div>
       {/* )} */}
     </>
   );
