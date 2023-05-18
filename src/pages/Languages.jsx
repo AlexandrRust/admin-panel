@@ -33,6 +33,7 @@ const Languages = () => {
     if (currentPage !== page) {
       setPage(page);
     }
+    console.log(page);
     // setPage(page);
   };
   const handelModalShow = () => {

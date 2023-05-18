@@ -3,9 +3,12 @@ import { TableTd } from 'components/pageTable/common/TableTd.style';
 import { TableTh } from 'components/pageTable/common/TableTh.style';
 import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
 import { BiXCircle } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
+import { cityOperations } from 'redux/city';
+import theme from 'theme/theme';
 
 const CityTable = ({ list, title, btnTitle, prevPath }) => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   //   const handleClick = e => {
   //     const id = e.currentTarget.dataset.value;
   //     dispatch(rolesOperations.getRoleForm(id));
@@ -14,7 +17,7 @@ const CityTable = ({ list, title, btnTitle, prevPath }) => {
     // eslint-disable-next-line no-restricted-globals
     const getconfirm = confirm(`Вы действительно хотите удалить город ${name}`);
     if (getconfirm) {
-      console.log(id);
+      dispatch(cityOperations.deleteCity(id));
     }
     // dispatch(rolesOperations.RoleDelete(id));
     // alert(isAdmin);
@@ -61,17 +64,13 @@ const CityTable = ({ list, title, btnTitle, prevPath }) => {
                       gap: '12px',
                     }}
                   >
-                    <BiXCircle
-                      fill="blue"
-                      style={{
-                        cursor: 'pointer',
-                        width: '20px',
-                        height: '20px',
-                      }}
+                    <button
+                      style={theme.btn.btnRed}
                       type="button"
                       onClick={() => handleDelete(elem.id, elem.name.en)}
-                      title="Delete user"
-                    />
+                    >
+                      Delete
+                    </button>
                   </div>
                 </TableTd>
               </tr>

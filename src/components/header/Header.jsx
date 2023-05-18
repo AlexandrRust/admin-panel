@@ -4,7 +4,7 @@ import { HeaderBox } from './common/HeaderBox.styled';
 import { HeaderTitle } from './common/HeaderTitle.styled';
 
 import { authOperations } from '../../redux/auth';
-import { ButtonLogout } from 'components/button/ButtonLogout.styled';
+import theme from 'theme/theme';
 
 const Header = ({ openNavBar, isOpen }) => {
   const dispatch = useDispatch();
@@ -15,10 +15,9 @@ const Header = ({ openNavBar, isOpen }) => {
     <HeaderBox>
       <Burger onClick={openNavBar} />
       <HeaderTitle>Home</HeaderTitle>
-
-      <ButtonLogout type="button" onClick={handleClick}>
+      <button style={theme.btn.btnGreen} type="button" onClick={handleClick}>
         Вихід
-      </ButtonLogout>
+      </button>
     </HeaderBox>
   );
 };

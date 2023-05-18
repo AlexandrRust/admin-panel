@@ -5,7 +5,7 @@ import { FormStyle } from 'components/form/FormStyle.styled';
 import { Formik } from 'formik';
 import { GrCircleQuestion } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
-import { citySelectors } from 'redux/city';
+import { cityOperations, citySelectors } from 'redux/city';
 import theme from 'theme/theme';
 
 const CreateCityForm = () => {
@@ -27,7 +27,7 @@ const CreateCityForm = () => {
       initialValues={res}
       onSubmit={async (values, actions) => {
         console.log(values);
-        // dispatch(languagesOperations.addLanguages(values));
+        dispatch(cityOperations.addCity(values));
         // dispatch(usersOperations.addUser(values));
         // navigate(path);
         // submitForm(values);

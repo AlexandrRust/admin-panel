@@ -3,6 +3,7 @@ import { TableTd } from 'components/pageTable/common/TableTd.style';
 import { TableTh } from 'components/pageTable/common/TableTh.style';
 import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
 import { BiXCircle } from 'react-icons/bi';
+import theme from 'theme/theme';
 
 const CountryTable = ({ list, title, btnTitle, prevPath }) => {
   //   const dispatch = useDispatch();
@@ -65,17 +66,13 @@ const CountryTable = ({ list, title, btnTitle, prevPath }) => {
                       gap: '12px',
                     }}
                   >
-                    <BiXCircle
-                      fill="blue"
-                      style={{
-                        cursor: 'pointer',
-                        width: '20px',
-                        height: '20px',
-                      }}
+                    <button
+                      style={theme.btn.btnRed}
                       type="button"
                       onClick={() => handleDelete(elem.id, elem.name.en)}
-                      title="Delete user"
-                    />
+                    >
+                      Delete
+                    </button>
                   </div>
                 </TableTd>
               </tr>

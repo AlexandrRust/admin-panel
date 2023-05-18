@@ -16,6 +16,7 @@
     "bootstrap": "^5.2.3",
     "formik": "^2.2.9",
     "formik-persist": "^1.1.0",
+    "normalize.css": "^8.0.1",
     "react": "^18.1.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.1.0",

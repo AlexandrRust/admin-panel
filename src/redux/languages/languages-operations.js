@@ -37,6 +37,7 @@ export const addLanguages = createAsyncThunk(
   async (credentials, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
+    const persistedCurentPage = state.languages.currentPage;
 
     if (!persistedToken) {
       return thunkAPI.rejectWithValue();
@@ -44,13 +45,23 @@ export const addLanguages = createAsyncThunk(
     token.set(persistedToken);
     try {
       await languagesCteate(credentials);
-      const { data } = await languagesGet();
+      const { data } = await languagesGet(persistedCurentPage);
       // console.log(data.data.api_token);
-      const getToken = data.data.api_token;
-      token.set(getToken);
-      const status = data.status;
-      const res = data.data;
-      return { res, status };
+      if (data.data.items.data.length >= 1) {
+        const res = data.data;
+        const getToken = data.data.api_token;
+        token.set(getToken);
+        const status = data.status;
+        return { res, status };
+      }
+      if (data.data.items.data.length < 1) {
+        const { data } = await languagesGet(1);
+        const res = data.data;
+        const getToken = data.data.api_token;
+        token.set(getToken);
+        const status = data.status;
+        return { res, status };
+      }
     } catch (error) {
       const err = thunkAPI.rejectWithValue(error.response.data);
       // toast.error(`${err.payload.errors}`);

@@ -46,7 +46,7 @@ const SearchUser = () => {
               Search
             </button>
             <button
-              style={theme.btn.btnGreen}
+              style={theme.btn.btnRed}
               type="reset"
               onClick={() => props.resetForm}
               // onSubmit={handleClick}

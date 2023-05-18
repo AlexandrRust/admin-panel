@@ -1,9 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 
-import { ToastContainer } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { RotatingLines } from 'react-loader-spinner';
 // import { useSelector } from 'react-redux';
@@ -47,75 +46,75 @@ export const App = () => {
       {/* {IsRefreshingUser ? (
         <div>Load...</div>
       ) : ( */}
-      <div style={{ position: 'relative' }}>
-        <Suspense
-          fallback={
-            <div
-              style={{
-                position: 'absolute',
-                top: '25%',
-                left: '50%',
-                transform: 'translate(0, -50%)',
-              }}
-            >
-              <RotatingLines
-                strokeColor="blue"
-                strokeWidth="5"
-                animationDuration="0.75"
-                width="96"
-                visible={true}
-              />
-            </div>
-          }
-        >
-          <Routes>
-            <Route
-              path="auths/login"
-              element={
-                <PublicRoute restricted redirectTo="/">
-                  <LoginPage />
-                </PublicRoute>
-              }
+      {/* <div style={{ position: 'relative' }}> */}
+      <Suspense
+        fallback={
+          <div
+            style={{
+              position: 'absolute',
+              top: '25%',
+              left: '50%',
+              transform: 'translate(0, -50%)',
+            }}
+          >
+            <RotatingLines
+              strokeColor="blue"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="96"
+              visible={true}
             />
+          </div>
+        }
+      >
+        <Routes>
+          <Route
+            path="auths/login"
+            element={
+              <PublicRoute restricted redirectTo="/">
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute redirectTo="auths/login">
+                <SharedLayout />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="/userShow/:user" element={<UserInfo />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/pages" element={<Pages />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/bunners" element={<Bunners />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/users/create" element={<CreateUsers />} />
+            <Route path="/users/update/:user" element={<UpdateUser />} />
+            <Route path="/roles" element={<Roles />} />
+            <Route path="/roles/create" element={<CreateRoles />} />
+            <Route path="/roles/update/:role" element={<UpdateRole />} />
+            <Route path="/menus" element={<Menus />} />
+            <Route path="/menus/create" element={<CreateMenus />} />
+            <Route path="/menus/update/:menuItem" element={<UpdateMenus />} />
+            <Route path="/permissions" element={<Permissions />} />
+            <Route path="/locations/languages" element={<Languages />} />
+            <Route path="/locations/country" element={<Country />} />
+            <Route path="/locations/city" element={<City />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/create" element={<CreateProduct />} />
+            <Route path="/categoryProducts" element={<CategoryProducts />} />
             <Route
-              path="/"
-              element={
-                <PrivateRoute redirectTo="auths/login">
-                  <SharedLayout />
-                </PrivateRoute>
-              }
-            >
-              <Route index element={<Dashboard />} />
-              <Route path="/userShow/:user" element={<UserInfo />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/pages" element={<Pages />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/bunners" element={<Bunners />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/users/create" element={<CreateUsers />} />
-              <Route path="/users/update/:user" element={<UpdateUser />} />
-              <Route path="/roles" element={<Roles />} />
-              <Route path="/roles/create" element={<CreateRoles />} />
-              <Route path="/roles/update/:role" element={<UpdateRole />} />
-              <Route path="/menus" element={<Menus />} />
-              <Route path="/menus/create" element={<CreateMenus />} />
-              <Route path="/menus/update/:menuItem" element={<UpdateMenus />} />
-              <Route path="/permissions" element={<Permissions />} />
-              <Route path="/locations/languages" element={<Languages />} />
-              <Route path="/locations/country" element={<Country />} />
-              <Route path="/locations/city" element={<City />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/create" element={<CreateProduct />} />
-              <Route path="/categoryProducts" element={<CategoryProducts />} />
-              <Route
-                path="/categoryProducts/create"
-                element={<CreateCategoryProducts />}
-              />
-            </Route>
-            <Route path="*" element={<div></div>} />
-          </Routes>
-        </Suspense>
-        {/* <div
+              path="/categoryProducts/create"
+              element={<CreateCategoryProducts />}
+            />
+          </Route>
+          <Route path="*" element={<div></div>} />
+        </Routes>
+      </Suspense>
+      {/* <div
           style={{
             position: 'absolute',
             top: '0',
@@ -126,7 +125,7 @@ export const App = () => {
           }}
         >
         </div> */}
-        {/* <ToastContainer
+      {/* <ToastContainer
           position="top-right"
           autoClose={1000}
           hideProgressBar={false}
@@ -138,7 +137,7 @@ export const App = () => {
           pauseOnHover
           theme="colored"
         /> */}
-      </div>
+      {/* </div> */}
       {/* )} */}
     </>
   );

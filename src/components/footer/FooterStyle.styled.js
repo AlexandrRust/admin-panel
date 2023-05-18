@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FooterStyle = styled.footer`
   display: block;
-  width: 100%;
+  /* width: 100%; */
   height: 40px;
+  padding: 0 15px;
   /* position: absolute; */
   /* bottom: 0; */
   background-color: #fff;
