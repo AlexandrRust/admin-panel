@@ -2,7 +2,7 @@ import { PageTableStyle } from 'components/pageTable/common/PageTableStyle.style
 import { TableTd } from 'components/pageTable/common/TableTd.style';
 import { TableTh } from 'components/pageTable/common/TableTh.style';
 import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
-import { BiEditAlt, BiXCircle } from 'react-icons/bi';
+
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { rolesOperations } from 'redux/roles';

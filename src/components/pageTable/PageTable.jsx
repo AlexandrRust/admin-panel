@@ -5,7 +5,6 @@ import { TableThBox } from './common/TableThBox.styled';
 import { useDispatch } from 'react-redux';
 import { usersOperations } from 'redux/users';
 import { Link, useLocation } from 'react-router-dom';
-import { BiEditAlt, BiIdCard, BiXCircle } from 'react-icons/bi';
 import theme from 'theme/theme';
 
 const PageTable = ({ list, title, btnTitle }) => {
