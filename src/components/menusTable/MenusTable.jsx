@@ -85,7 +85,7 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
                         list: list,
                       }}
                     >
-                      <button style={theme.btn.btnGreen} type="button">
+                      <button style={theme.btn.btnEdit} type="button">
                         Update
                       </button>
                     </Link>

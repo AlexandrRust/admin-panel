@@ -78,7 +78,7 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
                         idRole: elem.id,
                       }}
                     >
-                      <button style={theme.btn.btnGreen} type="button">
+                      <button style={theme.btn.btnEdit} type="button">
                         Update
                       </button>
                     </Link>

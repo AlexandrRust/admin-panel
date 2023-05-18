@@ -35,9 +35,23 @@ const theme = {
       transition:
         'color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out',
     },
+    // #17a2b8
     btnRed: {
       color: '#fff',
-      backgroundColor: 'red',
+      backgroundColor: '#dc3545',
+      padding: '3px 12px',
+      border: '1px solid transparent',
+      textDecoration: 'none',
+      cursor: 'pointer',
+      fontSize: '1rem',
+      lineHeight: '1.5',
+      borderRadius: '0.25rem',
+      transition:
+        'color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out',
+    },
+    btnEdit: {
+      color: '#fff',
+      backgroundColor: '#17a2b8',
       padding: '3px 12px',
       border: '1px solid transparent',
       textDecoration: 'none',

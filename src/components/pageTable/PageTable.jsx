@@ -88,7 +88,7 @@ const PageTable = ({ list, title, btnTitle }) => {
                         nickName: elem.nickname,
                       }}
                     >
-                      <button style={theme.btn.btnGreen} type="button">
+                      <button style={theme.btn.btnEdit} type="button">
                         Update
                       </button>
                     </Link>
