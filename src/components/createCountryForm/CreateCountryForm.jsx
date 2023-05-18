@@ -4,12 +4,12 @@ import { LabelStyle } from 'components/form/common/LabelStyle.styled';
 import { FormStyle } from 'components/form/FormStyle.styled';
 import { Formik } from 'formik';
 import { GrCircleQuestion } from 'react-icons/gr';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { countrySelectors } from 'redux/country';
 import theme from 'theme/theme';
 
 const CreateCountryForm = () => {
-  const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
   const btnTitle = useSelector(countrySelectors.getBtnTitle);
   const formFields = useSelector(countrySelectors.getFieldsForm);
 

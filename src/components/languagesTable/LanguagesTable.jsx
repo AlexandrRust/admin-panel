@@ -6,7 +6,6 @@ import { PageTableStyle } from 'components/pageTable/common/PageTableStyle.style
 import { TableTd } from 'components/pageTable/common/TableTd.style';
 import { TableTh } from 'components/pageTable/common/TableTh.style';
 import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
-import { BiXCircle } from 'react-icons/bi';
 import theme from 'theme/theme';
 
 const LanguagesTable = ({ list, title, btnTitle, prevPath }) => {
