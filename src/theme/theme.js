@@ -25,7 +25,7 @@ const theme = {
     btnBlue: {
       color: '#fff',
       backgroundColor: '#007bff',
-      padding: '8px 12px',
+      padding: '3px 12px',
       border: '1px solid transparent',
       textDecoration: 'none',
       cursor: 'pointer',
@@ -38,7 +38,7 @@ const theme = {
     btnRed: {
       color: '#fff',
       backgroundColor: 'red',
-      padding: '8px 12px',
+      padding: '3px 12px',
       border: '1px solid transparent',
       textDecoration: 'none',
       cursor: 'pointer',

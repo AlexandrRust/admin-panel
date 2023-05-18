@@ -6,6 +6,7 @@ import { BiEditAlt, BiXCircle } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { rolesOperations } from 'redux/roles';
+import theme from 'theme/theme';
 
 const RolesTable = ({ list, title, btnTitle, prevPath }) => {
   const dispatch = useDispatch();
@@ -65,6 +66,7 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
                       style={{
                         display: 'flex',
                         alignItems: 'center',
+                        textDecoration: 'none',
                       }}
                       to={`update/${elem.title}`}
                       data-value={elem.id}
@@ -76,39 +78,17 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
                         idRole: elem.id,
                       }}
                     >
-                      <BiEditAlt
-                        fill="blue"
-                        data-value={elem.id}
-                        title="Update user"
-                        style={{ width: '20px', height: '20px' }}
-                      />
+                      <button style={theme.btn.btnGreen} type="button">
+                        Update
+                      </button>
                     </Link>
-
-                    {/* <Link
-                      to={`/userShow/${elem.nickname}`}
-                      state={{
-                        prevPath: location.pathname,
-                        nickName: elem.nickname,
-                      }}
-                      style={{ display: 'flex', alignItems: 'center' }}
-                    >
-                      <BiIdCard
-                        fill="blue"
-                        style={{ width: '20px', height: '20px' }}
-                        title="Show user info"
-                      />
-                    </Link> */}
-                    <BiXCircle
-                      fill="blue"
-                      style={{
-                        cursor: 'pointer',
-                        width: '20px',
-                        height: '20px',
-                      }}
+                    <button
+                      style={theme.btn.btnRed}
                       type="button"
-                      onClick={() => deleteRole(elem.id, elem.title)}
-                      title="Delete user"
-                    />
+                      onClick={() => deleteRole(elem.nickname)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </TableTd>
               </tr>

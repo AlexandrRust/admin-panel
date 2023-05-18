@@ -6,6 +6,7 @@ import { BiEditAlt, BiXCircle } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { menusOperations } from 'redux/menus';
+import theme from 'theme/theme';
 
 const MenusTable = ({ list, title, btnTitle, prevPath }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
     // const id = e.currentTarget.dataset.value;
     // dispatch(rolesOperations.getRoleForm(id));
   };
-  const deleteRole = (id, name) => {
+  const deleteMenusItem = (id, name) => {
     // eslint-disable-next-line no-restricted-globals
     const getconfirm = confirm(
       `Вы действительно хотите удалить пункт меню ${name}`
@@ -71,6 +72,7 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
                       style={{
                         display: 'flex',
                         alignItems: 'center',
+                        textDecoration: 'none',
                       }}
                       to={`update/${elem.title.toLowerCase()}`}
                       data-value={elem.id}
@@ -83,25 +85,17 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
                         list: list,
                       }}
                     >
-                      <BiEditAlt
-                        fill="blue"
-                        data-value={elem.id}
-                        title="Update user"
-                        style={{ width: '20px', height: '20px' }}
-                      />
+                      <button style={theme.btn.btnGreen} type="button">
+                        Update
+                      </button>
                     </Link>
-
-                    <BiXCircle
-                      fill="blue"
-                      style={{
-                        cursor: 'pointer',
-                        width: '20px',
-                        height: '20px',
-                      }}
+                    <button
+                      style={theme.btn.btnRed}
                       type="button"
-                      onClick={() => deleteRole(elem.id, elem.title)}
-                      title="Delete user"
-                    />
+                      onClick={() => deleteMenusItem(elem.nickname)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </TableTd>
               </tr>

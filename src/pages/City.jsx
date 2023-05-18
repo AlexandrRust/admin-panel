@@ -23,7 +23,7 @@ const City = () => {
   const titlePage = useSelector(citySelectors.getTitle);
   const btnTitle = useSelector(citySelectors.getBtnTitle);
   const isCreate = useSelector(citySelectors.getIsCreate);
-  const formFields = useSelector(citySelectors.getFieldsForm);
+  // const formFields = useSelector(citySelectors.getFieldsForm);
   const languagesList = useSelector(citySelectors.getCityList);
   const total = useSelector(citySelectors.getTotalPage);
 

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { usersOperations } from 'redux/users';
 import { Link, useLocation } from 'react-router-dom';
 import { BiEditAlt, BiIdCard, BiXCircle } from 'react-icons/bi';
+import theme from 'theme/theme';
 
 const PageTable = ({ list, title, btnTitle }) => {
   const location = useLocation();
@@ -71,6 +72,7 @@ const PageTable = ({ list, title, btnTitle }) => {
                     <Link
                       style={{
                         // textAlign: 'center',
+                        textDecoration: 'none',
                         display: 'flex',
                         alignItems: 'center',
                         // gap: '5px',
@@ -86,41 +88,33 @@ const PageTable = ({ list, title, btnTitle }) => {
                         nickName: elem.nickname,
                       }}
                     >
-                      <BiEditAlt
-                        fill="blue"
-                        data-value={elem.nickname}
-                        title="Update user"
-                        style={{ width: '20px', height: '20px' }}
-                      />
+                      <button style={theme.btn.btnGreen} type="button">
+                        Update
+                      </button>
                     </Link>
-                    {/* <button value={elem.nickname} onClick={handleClick}>
-                    change
-                  </button> */}
                     <Link
                       to={`/userShow/${elem.nickname}`}
                       state={{
                         prevPath: location.pathname,
                         nickName: elem.nickname,
                       }}
-                      style={{ display: 'flex', alignItems: 'center' }}
-                    >
-                      <BiIdCard
-                        fill="blue"
-                        style={{ width: '20px', height: '20px' }}
-                        title="Show user info"
-                      />
-                    </Link>
-                    <BiXCircle
-                      fill="blue"
                       style={{
-                        cursor: 'pointer',
-                        width: '20px',
-                        height: '20px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        textDecoration: 'none',
                       }}
+                    >
+                      <button style={theme.btn.btnBlue} type="button">
+                        Show
+                      </button>
+                    </Link>
+                    <button
+                      style={theme.btn.btnRed}
                       type="button"
                       onClick={() => deleteUser(elem.nickname)}
-                      title="Delete user"
-                    />
+                    >
+                      Delete
+                    </button>
                   </div>
                 </TableTd>
               </tr>
