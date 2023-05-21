@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { usersOperations, usersSelectors } from 'redux/users';
 import { useEffect } from 'react';
 import FormCreateUsers from 'components/formCreateUsers/FormCreateUsers';
+import { toast } from 'react-toastify';
 
 const CreateUsers = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const CreateUsers = () => {
   };
   useEffect(() => {
     if (isCreate) {
+      toast.success('User was added');
       navigate(prevPath);
     }
   }, [navigate, prevPath, isCreate]);

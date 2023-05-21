@@ -3,25 +3,20 @@ import { TableTd } from 'components/pageTable/common/TableTd.style';
 import { TableTh } from 'components/pageTable/common/TableTh.style';
 import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { menusOperations } from 'redux/menus';
+import { stateOperations } from 'redux/state';
 import theme from 'theme/theme';
 
-const MenusTable = ({ list, title, btnTitle, prevPath }) => {
+const StateTable = ({ list, title, btnTitle, prevPath }) => {
   const dispatch = useDispatch();
-  const handleClick = e => {
-    // const id = e.currentTarget.dataset.value;
-    // dispatch(rolesOperations.getRoleForm(id));
-  };
-  const deleteMenusItem = (id, title) => {
+  const handleDelete = (id, name) => {
+    console.log(name);
     // eslint-disable-next-line no-restricted-globals
-    const getconfirm = confirm(
-      `Вы действительно хотите удалить пункт меню ${title}`
-    );
+    const getconfirm = confirm(`Вы действительно хотите удалить язык ${name}`);
+
     if (getconfirm) {
-      dispatch(menusOperations.menusDelete(id));
-      toast.success(`${title} has been removed`);
+      dispatch(stateOperations.deleteState(id));
+      toast.success(`${name} has been removed`);
     }
   };
   let tableTitles = [];
@@ -56,11 +51,10 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
             {list.map(elem => (
               <tr key={elem.id}>
                 <TableTd>{elem.id}</TableTd>
-                <TableTd>{elem.title}</TableTd>
-                <TableTd>{elem.path}</TableTd>
-                <TableTd>{elem.parent}</TableTd>
-                <TableTd>{elem.type}</TableTd>
-                <TableTd>{elem.sort_order}</TableTd>
+                <TableTd>{elem.name.en}</TableTd>
+                <TableTd>{elem.code}</TableTd>
+                <TableTd>{elem.shortcode}</TableTd>
+                <TableTd>{elem.status}</TableTd>
                 <TableTd style={{ width: '8%' }}>
                   <div
                     style={{
@@ -69,31 +63,10 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
                       gap: '12px',
                     }}
                   >
-                    <Link
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        textDecoration: 'none',
-                      }}
-                      to={`update/${elem.title.toLowerCase()}`}
-                      data-value={elem.id}
-                      onClick={handleClick}
-                      state={{
-                        title: title,
-                        btnTitle: btnTitle,
-                        prevPath: prevPath,
-                        idMenus: elem.id,
-                        list: list,
-                      }}
-                    >
-                      <button style={theme.btn.btnEdit} type="button">
-                        Update
-                      </button>
-                    </Link>
                     <button
                       style={theme.btn.btnRed}
                       type="button"
-                      onClick={() => deleteMenusItem(elem.id, elem.title)}
+                      onClick={() => handleDelete(elem.id, elem.name.en)}
                     >
                       Delete
                     </button>
@@ -120,4 +93,4 @@ const MenusTable = ({ list, title, btnTitle, prevPath }) => {
   );
 };
 
-export default MenusTable;
+export default StateTable;

@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { rolesOperations, rolesSelectors } from 'redux/roles';
 import theme from 'theme/theme';
 
@@ -23,6 +24,7 @@ const CreateRoles = () => {
   };
   useEffect(() => {
     if (isCreate) {
+      toast.success('Role was added');
       navigate(prevPath);
     }
   }, [navigate, prevPath, isCreate]);

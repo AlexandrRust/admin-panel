@@ -1,5 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 
@@ -25,6 +28,7 @@ const Menus = lazy(() => import('./pages/Menus'));
 const CreateMenus = lazy(() => import('./components/createMenus/CreateMenus'));
 const UpdateMenus = lazy(() => import('./components/updateMenus/UpdateMenus'));
 const Languages = lazy(() => import('./pages/Languages'));
+const State = lazy(() => import('./pages/State'));
 const Country = lazy(() => import('./pages/Country'));
 const City = lazy(() => import('./pages/City'));
 const Products = lazy(() => import('./pages/Products'));
@@ -101,6 +105,7 @@ export const App = () => {
             <Route path="/menus/update/:menuItem" element={<UpdateMenus />} />
             <Route path="/permissions" element={<Permissions />} />
             <Route path="/locations/languages" element={<Languages />} />
+            <Route path="/locations/state" element={<State />} />
             <Route path="/locations/country" element={<Country />} />
             <Route path="/locations/city" element={<City />} />
             <Route path="/products" element={<Products />} />
@@ -114,31 +119,18 @@ export const App = () => {
           <Route path="*" element={<div></div>} />
         </Routes>
       </Suspense>
-      {/* <div
-          style={{
-            position: 'absolute',
-            top: '0',
-            left: '0',
-            width: '1000%',
-            backgroundColor: 'rgba(0, 0, 0, 0.1)',
-            // transform: 'translate(0, -50%)',
-          }}
-        >
-        </div> */}
-      {/* <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        /> */}
-      {/* </div> */}
-      {/* )} */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };

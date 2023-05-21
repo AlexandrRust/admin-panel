@@ -5,6 +5,7 @@ import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
 
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { rolesOperations } from 'redux/roles';
 import theme from 'theme/theme';
 
@@ -14,13 +15,14 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
     const id = e.currentTarget.dataset.value;
     dispatch(rolesOperations.getRoleForm(id));
   };
-  const deleteRole = (id, title) => {
+  const deleteRole = (title, id) => {
     // eslint-disable-next-line no-restricted-globals
     const getconfirm = confirm(
       `Вы действительно хотите удалить роль "${title}"`
     );
     if (getconfirm) {
       dispatch(rolesOperations.RoleDelete(id));
+      toast.success(`${title} has been removed`);
     }
   };
   let tableTitles = [];
@@ -76,6 +78,7 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
                         btnTitle: btnTitle,
                         prevPath: prevPath,
                         idRole: elem.id,
+                        name: elem.title,
                       }}
                     >
                       <button style={theme.btn.btnEdit} type="button">
@@ -85,7 +88,7 @@ const RolesTable = ({ list, title, btnTitle, prevPath }) => {
                     <button
                       style={theme.btn.btnRed}
                       type="button"
-                      onClick={() => deleteRole(elem.nickname)}
+                      onClick={() => deleteRole(elem.title, elem.id)}
                     >
                       Delete
                     </button>

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { rolesOperations } from './index';
+import { stateOperations } from './index';
 
 const initialState = {
-  rolesList: [],
+  stateList: [],
   fields: [],
   static: {
     titlePage: '',
@@ -15,12 +15,12 @@ const initialState = {
   isUpdate: false,
 };
 
-export const roleSlice = createSlice({
-  name: 'roles',
+export const stateSlice = createSlice({
+  name: 'state',
   initialState,
   extraReducers: {
-    [rolesOperations.getRoles.fulfilled](state, action) {
-      state.rolesList = action.payload.res.items.data;
+    [stateOperations.getStates.fulfilled](state, action) {
+      state.stateList = action.payload.res.items.data;
       state.static.titlePage = action.payload.res.static.title;
       state.static.btnTitle = action.payload.res.static.btnAction;
       state.fields = action.payload.res.fields;
@@ -30,35 +30,24 @@ export const roleSlice = createSlice({
       state.isCreate = false;
       state.isUpdate = false;
     },
-    [rolesOperations.addRoles.fulfilled](state, action) {
-      state.rolesList = action.payload.res.items.data;
-      state.static.titlePage = action.payload.res.static.title;
-      state.static.btnTitle = action.payload.res.static.btnAction;
+    [stateOperations.addState.fulfilled](state, action) {
+      state.stateList = action.payload.res.items.data;
       state.fields = action.payload.res.fields;
+      state.title = action.payload.res.static.title;
+      state.btnTitle = action.payload.res.static.btnAction;
+      state.currentPage = action.payload.res.items.current_page;
+      state.perPage = action.payload.res.items.per_page;
+      state.total = action.payload.res.items.last_page;
+      state.status = action.payload.status;
       state.isCreate = true;
+    },
+    [stateOperations.deleteState.fulfilled](state, action) {
+      state.stateList = action.payload.res.items.data;
       state.currentPage = action.payload.res.items.current_page;
       state.perPage = action.payload.res.items.per_page;
       state.total = action.payload.res.items.last_page;
-    },
-    [rolesOperations.addRoles.rejected](state, action) {
-      state.isCreate = false;
-    },
-    [rolesOperations.RoleDelete.fulfilled](state, action) {
-      state.rolesList = action.payload.res.items.data;
-      state.currentPage = action.payload.res.items.current_page;
-      state.perPage = action.payload.res.items.per_page;
-      state.total = action.payload.res.items.last_page;
-    },
-    [rolesOperations.getRoleForm.fulfilled](state, action) {
-      state.fields = action.payload.res.fields;
-    },
-    [rolesOperations.updateRole.fulfilled](state, action) {
-      state.isUpdate = true;
-    },
-    [rolesOperations.updateRole.rejected](state, action) {
-      state.isUpdate = false;
     },
   },
 });
 
-export default roleSlice.reducer;
+export default stateSlice.reducer;

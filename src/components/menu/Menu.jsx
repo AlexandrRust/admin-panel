@@ -130,9 +130,15 @@ const Menu = () => {
               <MenuItemTitle>Languages</MenuItemTitle>
             </MenuLink>
           </MenuItem>
+
           <MenuItem>
             <MenuLink to="/locations/country">
               <MenuItemTitle>Country</MenuItemTitle>
+            </MenuLink>
+          </MenuItem>
+          <MenuItem>
+            <MenuLink to="/locations/state">
+              <MenuItemTitle>State</MenuItemTitle>
             </MenuLink>
           </MenuItem>
           <MenuItem>

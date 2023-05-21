@@ -8,6 +8,7 @@ import { menusOperations, menusSelectors } from 'redux/menus';
 import { useEffect } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import CreateMenusForm from 'components/createMenusForm/CreateMenusForm';
+import { toast } from 'react-toastify';
 
 const CreateMenus = () => {
   const location = useLocation();
@@ -23,6 +24,7 @@ const CreateMenus = () => {
   };
   useEffect(() => {
     if (isCreate) {
+      toast.success('Menu was added');
       navigate(prevPath);
     }
   }, [navigate, prevPath, isCreate]);

@@ -1,0 +1,9 @@
+export const getStateList = state => state.state.stateList;
+export const getTitle = state => state.state.static.titlePage;
+export const getBtnTitle = state => state.state.static.btnTitle;
+export const getTotalPage = state => state.state.total;
+export const getPerPage = state => state.state.perPage;
+export const getCurrentPage = state => state.state.currentPage;
+export const getFieldsForm = state => state.state.fields;
+export const getIsUpdate = state => state.state.isUpdate;
+export const getIsCreate = state => state.state.isCreate;

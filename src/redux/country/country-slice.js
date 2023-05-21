@@ -25,7 +25,6 @@ export const countrySlice = createSlice({
       state.fields = action.payload.res.fields;
       state.title = action.payload.res.static.title;
       state.btnTitle = action.payload.res.static.btnAction;
-      // state.roles = action.payload.res.roles;
       state.currentPage = action.payload.res.items.current_page;
       state.perPage = action.payload.res.items.per_page;
       state.total = action.payload.res.items.last_page;

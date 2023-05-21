@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { rolesOperations, rolesSelectors } from 'redux/roles';
 import theme from 'theme/theme';
 
@@ -18,7 +19,7 @@ const UpdateRoles = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const formFields = useSelector(rolesSelectors.getFieldsForm);
-  const { title, btnTitle, prevPath, idRole } = location.state;
+  const { title, btnTitle, prevPath, idRole, name } = location.state;
   const isUpdate = useSelector(rolesSelectors.getIsUpdate);
   const backIcon = () => {
     navigate(prevPath);
@@ -34,9 +35,10 @@ const UpdateRoles = () => {
 
   useEffect(() => {
     if (isUpdate || formFields.length === 0) {
+      toast.success(`${name} was updaded`);
       navigate(prevPath);
     }
-  }, [formFields.length, isUpdate, navigate, prevPath]);
+  }, [formFields.length, isUpdate, name, navigate, prevPath]);
   return (
     <PageContentBox>
       <Section>
@@ -53,7 +55,6 @@ const UpdateRoles = () => {
           }}
           enableReinitialize
           onSubmit={async (values, actions) => {
-            console.log(values);
             const { title, alias } = values;
             dispatch(rolesOperations.updateRole({ title, alias, idRole }));
           }}

@@ -1,34 +1,37 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { languagesOperations, languagesSelectors } from 'redux/languages';
-import theme from 'theme/theme';
-
-import Modal from '../components/modal/Modal';
-import CreateLanguagesForm from 'components/createLanguagesForm/CreateLanguagesForm';
-import LanguagesTable from 'components/languagesTable/LanguagesTable';
-import TablePagination from 'components/tablePagination/TablePagination';
-
+import CreateStateForm from 'components/createStateForm/CreateStateForm';
+import Modal from 'components/modal/Modal';
 import { PageContentBox } from 'components/pageContentBox/PageContentBox.styled';
 import { PageHeader } from 'components/pageHeader/PageHeader.styled';
 import { PageTitle } from 'components/pageTitle/PageTtitle.styled';
 import { Section } from 'components/section/Section.styled';
+import StateTable from 'components/stateTable/StateTable';
+import TablePagination from 'components/tablePagination/TablePagination';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { stateOperations, stateSelectors } from 'redux/state';
+import theme from 'theme/theme';
 
-const Languages = () => {
-  const currentPage = useSelector(languagesSelectors.getCurrentPage);
+const State = () => {
+  const currentPage = useSelector(stateSelectors.getCurrentPage);
+  const [countryName, setCountryName] = useState('');
   const [page, setPage] = useState(1);
   const [modalShow, setModalShow] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
-  const titlePage = useSelector(languagesSelectors.getTitle);
-  const btnTitle = useSelector(languagesSelectors.getBtnTitle);
-  const isCreate = useSelector(languagesSelectors.getIsCreate);
-  const languagesList = useSelector(languagesSelectors.getLanguagesList);
-  const total = useSelector(languagesSelectors.getTotalPage);
-
+  const titlePage = useSelector(stateSelectors.getTitle);
+  const btnTitle = useSelector(stateSelectors.getBtnTitle);
+  const isCreate = useSelector(stateSelectors.getIsCreate);
+  const stateList = useSelector(stateSelectors.getStateList);
+  const total = useSelector(stateSelectors.getTotalPage);
   useEffect(() => {
-    dispatch(languagesOperations.getLanguages(page));
+    if (stateList.length > 0) {
+      setCountryName(stateList[0].country_id);
+    }
+  }, [stateList]);
+  useEffect(() => {
+    dispatch(stateOperations.getStates(page));
   }, [dispatch, page]);
   const handelClick = (e, page) => {
     if (currentPage !== page) {
@@ -43,7 +46,7 @@ const Languages = () => {
   };
   useEffect(() => {
     if (isCreate) {
-      toast.success('Language was added');
+      toast.success('State was added');
       handelModalClose();
     }
   }, [isCreate]);
@@ -59,15 +62,15 @@ const Languages = () => {
           </PageHeader>
         </Section>
         <Section>
-          <LanguagesTable
-            list={languagesList}
+          <StateTable
+            list={stateList}
             title={titlePage}
             btnTitle={btnTitle}
             prevPath={location.pathname}
           />
           <TablePagination
             allPage={total}
-            list={languagesList}
+            list={stateList}
             onChange={handelClick}
             page={currentPage}
           />
@@ -76,7 +79,7 @@ const Languages = () => {
       {modalShow && (
         <Modal
           handelModalClose={handelModalClose}
-          children={<CreateLanguagesForm />}
+          children={<CreateStateForm countryName={countryName} />}
           title={titlePage}
         ></Modal>
       )}
@@ -84,4 +87,4 @@ const Languages = () => {
   );
 };
 
-export default Languages;
+export default State;

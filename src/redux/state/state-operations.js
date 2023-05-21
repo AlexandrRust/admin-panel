@@ -1,15 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from 'api/api';
-import {
-  deleteRole,
-  roleFormGet,
-  rolesCteate,
-  rolesGet,
-  roleUpdate,
-} from 'api/rolesApi';
+import { stateCteate, stateDelete, stateGet } from 'api/stateApi';
 
-export const getRoles = createAsyncThunk(
-  '/sky/roles',
+export const getStates = createAsyncThunk(
+  '/sky/state',
   async (credentials, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -19,7 +13,7 @@ export const getRoles = createAsyncThunk(
     }
     token.set(persistedToken);
     try {
-      const { data } = await rolesGet(credentials);
+      const { data } = await stateGet(credentials);
       const status = data.status;
       const res = data.data;
       return { res, status };
@@ -33,9 +27,8 @@ export const getRoles = createAsyncThunk(
     }
   }
 );
-
-export const addRoles = createAsyncThunk(
-  '/sky/roles/create',
+export const addState = createAsyncThunk(
+  '/sky/state/create',
   async (credentials, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -45,14 +38,23 @@ export const addRoles = createAsyncThunk(
     }
     token.set(persistedToken);
     try {
-      await rolesCteate(credentials);
-      const { data } = await rolesGet();
-      // console.log(data.data.api_token);
-      const getToken = data.data.api_token;
-      token.set(getToken);
-      const status = data.status;
-      const res = data.data;
-      return { res, status };
+      await stateCteate(credentials);
+      const { data } = await stateGet();
+      if (data.data.items.data.length >= 1) {
+        const res = data.data;
+        const getToken = data.data.api_token;
+        token.set(getToken);
+        const status = data.status;
+        return { res, status };
+      }
+      if (data.data.items.data.length < 1) {
+        const { data } = await stateGet(1);
+        const res = data.data;
+        const getToken = data.data.api_token;
+        token.set(getToken);
+        const status = data.status;
+        return { res, status };
+      }
     } catch (error) {
       const err = thunkAPI.rejectWithValue(error.response.data);
       // toast.error(`${err.payload.errors}`);
@@ -67,22 +69,26 @@ export const addRoles = createAsyncThunk(
     }
   }
 );
-
-export const RoleDelete = createAsyncThunk(
-  `/sky/roles/delete`,
+export const deleteState = createAsyncThunk(
+  `/sky/state/delete`,
   async (credentials, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    const persistedCurentPage = state.roles.currentPage;
+    const persistedCurentPage = state.state.currentPage;
 
     if (!persistedToken) {
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken);
     try {
-      await deleteRole(credentials);
-
-      const { data } = await rolesGet(persistedCurentPage);
+      await stateDelete(credentials);
+      const { data } = await stateGet(persistedCurentPage);
+      // console.log(data.data.items.data.length);
+      // const res = data.data;
+      // const getToken = data.data.api_token;
+      // token.set(getToken);
+      // const status = data.status;
+      // return { res, status };
       if (data.data.items.data.length >= 1) {
         const res = data.data;
         const getToken = data.data.api_token;
@@ -91,60 +97,13 @@ export const RoleDelete = createAsyncThunk(
         return { res, status };
       }
       if (data.data.items.data.length < 1) {
-        const { data } = await rolesGet(1);
+        const { data } = await stateGet(1);
         const res = data.data;
         const getToken = data.data.api_token;
         token.set(getToken);
         const status = data.status;
         return { res, status };
       }
-    } catch (error) {
-      const err = thunkAPI.rejectWithValue(error.response.data);
-      return err;
-      // alert(error.response.data.errors.message);
-      // toast.error(`${error.message}`);
-    }
-  }
-);
-
-export const getRoleForm = createAsyncThunk(
-  `/sky/roles/form`,
-  async (credentials, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (!persistedToken) {
-      return thunkAPI.rejectWithValue();
-    }
-    token.set(persistedToken);
-    try {
-      const { data } = await roleFormGet(credentials);
-      const status = data.status;
-      const res = data.data;
-      return { res, status };
-    } catch (error) {
-      const err = thunkAPI.rejectWithValue(error.response.data);
-      return err;
-      // alert(error.response.data.errors.message);
-      // toast.error(`${error.message}`);
-    }
-  }
-);
-
-export const updateRole = createAsyncThunk(
-  `/sky/roles/update`,
-  async (credentials, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (!persistedToken) {
-      return thunkAPI.rejectWithValue();
-    }
-    token.set(persistedToken);
-    try {
-      await roleUpdate(credentials);
-      const { data } = await rolesGet();
-      const status = data.status;
-      const res = data.data;
-      return { res, status };
     } catch (error) {
       const err = thunkAPI.rejectWithValue(error.response.data);
       return err;

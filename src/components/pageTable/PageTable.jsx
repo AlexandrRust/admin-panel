@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { usersOperations } from 'redux/users';
 import { Link, useLocation } from 'react-router-dom';
 import theme from 'theme/theme';
+import { toast } from 'react-toastify';
 
 const PageTable = ({ list, title, btnTitle }) => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const PageTable = ({ list, title, btnTitle }) => {
     );
     if (getconfirm) {
       dispatch(usersOperations.UserDelete(nickName));
+      toast.success(`${nickName} has been removed`);
     }
   };
 

@@ -7,6 +7,7 @@ import { TableTd } from 'components/pageTable/common/TableTd.style';
 import { TableTh } from 'components/pageTable/common/TableTh.style';
 import { TableThBox } from 'components/pageTable/common/TableThBox.styled';
 import theme from 'theme/theme';
+import { toast } from 'react-toastify';
 
 const LanguagesTable = ({ list, title, btnTitle, prevPath }) => {
   const dispatch = useDispatch();
@@ -17,11 +18,11 @@ const LanguagesTable = ({ list, title, btnTitle, prevPath }) => {
   const handleDelete = (id, name) => {
     // eslint-disable-next-line no-restricted-globals
     const getconfirm = confirm(`Вы действительно хотите удалить язык ${name}`);
+
     if (getconfirm) {
       dispatch(languagesOperations.deleteLanguages(id));
+      toast.success(`${name} has been removed`);
     }
-    // dispatch(rolesOperations.RoleDelete(id));
-    // alert(isAdmin);
   };
   let tableTitles = [];
   if (list.length === 0) {

@@ -21,11 +21,8 @@ const FormCreateUsers = ({ fields, submitForm }) => {
     <Formik
       initialValues={res}
       onSubmit={async (values, actions) => {
-        // dispatch(usersOperations.addUser(values));
-        // navigate(path);
         submitForm(values);
         actions.resetForm();
-        // console.log(status);
       }}
     >
       {props => (

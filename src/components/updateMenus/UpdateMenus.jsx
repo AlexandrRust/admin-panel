@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { menusOperations, menusSelectors } from 'redux/menus';
 import theme from 'theme/theme';
 
@@ -46,6 +47,7 @@ const UpdateMenus = () => {
 
   useEffect(() => {
     if (isUpdate || formFields.length === 0) {
+      toast.success(`Menu was updaded`);
       navigate(prevPath);
     }
   }, [formFields.length, isUpdate, navigate, prevPath]);
@@ -68,7 +70,6 @@ const UpdateMenus = () => {
           }}
           enableReinitialize
           onSubmit={async (values, actions) => {
-            console.log(values);
             const formValues = { ...values, idMenus };
             dispatch(menusOperations.updateMenus(formValues));
           }}

@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { usersOperations, usersSelectors } from 'redux/users';
 import theme from 'theme/theme';
 
@@ -18,7 +19,7 @@ const UpdateUser = () => {
   const location = useLocation();
   const formFields = useSelector(usersSelectors.GetFieldsForm);
   const navigate = useNavigate();
-  const { title, btnTitle, prevPath } = location.state;
+  const { title, btnTitle, prevPath, nickName } = location.state;
   const isUpdate = useSelector(usersSelectors.getIsUpdate);
   const backIcon = () => {
     navigate(prevPath);
@@ -35,9 +36,10 @@ const UpdateUser = () => {
 
   useEffect(() => {
     if (isUpdate) {
+      toast.success(`${nickName} was updaded`);
       navigate(prevPath);
     }
-  }, [isUpdate, navigate, prevPath]);
+  }, [isUpdate, navigate, nickName, prevPath]);
 
   return (
     <PageContentBox>
@@ -58,7 +60,7 @@ const UpdateUser = () => {
           }}
           enableReinitialize
           onSubmit={async (values, actions) => {
-            dispatch(usersOperations.userUpdate(values));
+            dispatch(usersOperations.userUpdate({ ...values, nickName }));
           }}
         >
           {props => (
